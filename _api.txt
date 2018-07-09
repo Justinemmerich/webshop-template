@@ -1,0 +1,225 @@
+# getProducts
+// Liefert alle Produkte für die Kurzübersicht
+
+Type: GET
+
+Response beispiel:
+
+{
+  "products":  
+    [
+            {
+                itemId:'001',
+                images:['6.jpg'],
+                productname: 'Name aus Holz',
+                seoname:'name-aus-holz',
+                price:12.90,
+                categories:'Holz',
+
+            },
+            {
+                itemId:'002',
+                images:['6.jpg'],
+                productname: 'Schlüsselanhänger Gravur',
+                seoname:'schluesselanhaenger-gravur',
+                price:17.45,
+                categories:'Metall',
+            },
+    ];
+}
+
+
+_____________________________________
+
+
+# getCategories
+// liefert eine Liste aller filterbaren Kategorien 
+(Könnte auch als getSettings gekapselt werden)
+
+Type: GET
+
+Response beispiel:
+
+{
+    categories: ['Holz', 'Metall'],
+}
+
+
+_____________________________________
+
+# getProductbyID (SingleProduct)
+// liefert detailierte Produktinfomationen
+
+Type: GET
+
+Parameter: itemID (String)
+
+Response beispiel:
+
+{
+        itemId:'001',
+        images:['6.jpg', '2.jpg', '3.jpg'],
+        productname: 'Name aus Holz',
+        seoname:'name-aus-holz',
+        price:12.90,
+        categories:'Holz',
+        hasIndividualisation: true,
+        description: 'Beschreibung hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+        description_big: 'Beschreibung hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+        information: 'Information hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+}
+
+_____________________________________
+
+# isCouponValid
+// liefert zurück ob der Coupon gültig ist und dessen Wert
+
+Type: Post
+
+Requestbody: 
+
+{
+    "code":'hx5663fdg3',
+}
+
+Response beispiel:
+
+
+{
+    "valid":true/false, 
+    "amount":5, 
+    expires:"762376762357276", (Timestamp)
+    "code":'hx5663fdg3' 
+}
+
+_____________________________________
+
+#getCountryDetails (ShippingCosts + Zipcode validation)
+
+Type: Get
+
+Parameter: country (String)
+
+Response beispiel:
+
+{
+    "Deutschland": {"price":7.99, zipcode_validation:'Regexhere'},
+    "Schweiz": {"price":9.99, zipcode_validation:'Regexhere'},
+}
+
+_____________________________________
+
+?? #generateOrderID
+// liefert eine uuid für die Bestellung
+
+Type: Get
+
+Response beispiel:
+
+{
+    order_id: 'rbkgf1528709017522'
+}
+
+
+_____________________________________
+
+
+# isCartValid
+// 
+
+type Post
+
+Requestbody: 
+
+{
+   order_id: 'rbkgf1528709017522',
+   cart: [
+        {
+            "cartItemId": "va0b3vwyj",
+            "itemId": "002",
+            "image": "1.jpg",
+            "productname": "Schlüsselanhänger Gravur",
+            "price": 17.45,
+            "quantity": 1,
+            "individualisation": ""
+        }
+        ];
+    dicount: 5.00,
+    shipping: 5.99,
+    shipping_country: 'Deutschland',
+    total: 12.45,
+}
+
+Response beispiel:
+
+{
+    isvalid: true/false,
+    dicount: 5.00,
+    shipping: 5.99,
+    total: 12.45,
+}
+
+_____________________________________
+
+#setOrder 
+// Absendung der Bestellung
+
+type Post
+
+Requestbody: 
+{
+  "order_id": "zvfin1528710230693",
+  "order_date": "2018-06-11T09:43:50.691Z",
+  "order": [
+    {
+      "cartItemId": "va0b3vwyj",
+      "itemId": "002",
+      "image": "1.jpg",
+      "productname": "Schlüsselanhänger Gravur",
+      "price": 17.45,
+      "quantity": 1,
+      "individualisation": ""
+    }
+  ],
+  "coupon": {
+    "valid": true,
+    "amount": 5,
+    "expires": "762376762357276",
+    "code": "hx5663fdg3"
+  },
+  "customerinformation": {
+    "billing_adress": {
+      "forename": "jus",
+      "lastname": "j",
+      "email": "justinemmerich@t-online.de",
+      "street": "hhhh 56",
+      "company": "",
+      "zipcode": "56665",
+      "city": "deut",
+      "notes": "",
+      "country": "Deutschland"
+    },
+    "has_divergent_shippingadress": false,
+    "shipping_adress": {
+      "forename": "",
+      "lastname": "",
+      "street": "",
+      "company": "",
+      "zipcode": "",
+      "city": "",
+      "notes": "",
+      "country": "Deutschland"
+    },
+    "payment_method": "payment_in_advice"
+    "payment_information": {
+
+    }
+  }
+}
+
+Response beispiel:
+
+Code 201 - created
+Code 409 - conflict (cart not valid)
+Code 402 - Payment Required (payment not valid)
+
