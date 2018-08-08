@@ -56,10 +56,17 @@ function renderOrderComplete() {
 
         var display_individualisation = cart[i].hasIndividualisation === false ?  'none': 'block';
 
+        var individualisationwrapper = '';
+        for (var k = 0; k < cart[i].individualisation.length; k++){
+            individualisationwrapper+= '<span style="display:'+display_individualisation+'; font-family: '+cart[i].individualisation[k].font+'; font-size: 1.1em;">'+cart[i].individualisation[k].value+'</span>';
+        }
+
         var div = document.createElement('tr');
 
         if (cart[i].hasIndividualisation){
-            div.innerHTML = '<td>'+cart[i].productname+'<br> <i>'+cart[i].individualisation+'</i></td>\
+            div.innerHTML = '<td>'+cart[i].productname+'<br> \
+                        <img style="display:'+display_individualisation+'; height:25px; width: 10%; float:left" src="'+cart[i].decorImage+'">\
+                        <br><br><span style="display:'+display_individualisation+'; class="mt-20">'+ individualisationwrapper +' </span></td>\
                         <td class="text-center">'+cart[i].quantity+'</td>\
                         <td class="text-right" style="padding-left:0">'+(cart[i].price *cart[i].quantity).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
         }else{
@@ -84,7 +91,7 @@ function renderOrderComplete() {
                     totalgiftprice = totalgiftprice + cardprice;
                 }
                 if(options[i].options[j].packing === true){
-                    totalgiftprice = totalgiftprice + cardprice;
+                    totalgiftprice = totalgiftprice + packingprice;
                 }
             }  
         } 
@@ -135,9 +142,9 @@ function renderOrderComplete() {
     document.getElementById('top_total').innerHTML = (totaltotal).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
 
     switch(customerinformation.payment_method) {
-        case 'payment_in_advice':
+        case 'payment_in_advance':
             document.getElementById('top_payment').innerHTML = 'Vorkasse';
-            document.getElementById('payment_in_advice').style.display = 'block';
+            document.getElementById('payment_in_advance').style.display = 'block';
             break;
         case 'direct_debit':
             document.getElementById('top_payment').innerHTML = 'EC-Karte';

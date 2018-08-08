@@ -225,6 +225,11 @@ function render(){
 
         var display_individualisation = cart[i].hasIndividualisation === false ?  'none': 'block';
 
+        var individualisationwrapper = '';
+        for (var k = 0; k < cart[i].individualisation.length; k++){
+            individualisationwrapper+= '<p style="display:'+display_individualisation+'; font-family: '+cart[i].individualisation[k].font+'; font-size: 1.1em;">'+cart[i].individualisation[k].value+'</p>';
+        }
+
         var tr = document.createElement('tr');
         tr.className = "single-cart";
         tr.innerHTML = '<td class="product-thumbnail text-left">\
@@ -234,7 +239,8 @@ function render(){
                                 </div>\
                                 <div class="product-info product-info-table">\
                                 <h4 class="post-title"><a class="text-light-black" href="#">'+ cart[i].productname +'</a></h4>\
-                                <p style="display:'+display_individualisation+'" class="mb-0">indiv. : '+ cart[i].individualisation +' </p>\
+                                <p style="display:'+display_individualisation+'; class="mt-20">'+ individualisationwrapper +' </p>\
+                                <img style="display:'+display_individualisation+'; height:25px; width: 100%" src="'+cart[i].decorImage+'">\
                                 </div>\
                             </div>\
                         </td>\
@@ -396,7 +402,7 @@ function renderPrice(){
                     totalgiftprice = totalgiftprice + cardprice;
                 }
                 if(options[i].options[j].packing === true){
-                    totalgiftprice = totalgiftprice + cardprice;
+                    totalgiftprice = totalgiftprice + packingprice;
                 }
             }  
         }       

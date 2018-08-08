@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="de">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -62,13 +62,21 @@
 										<div class="mini-cart text-right">
 											<ul>
 												<li>
+														<div class="language-selection-div">
+																<select class="form-control language-selection" id="sel1">
+																  <option value="de">DE</option>
+																  <option value="en">EN</option>
+																</select>
+															  </div>
+												</li>
+												<li>
 													<a class="cart-icon" href="#">
 														<i class="zmdi zmdi-shopping-cart"></i>
 														<span>0</span>
 													</a>
 													<div class="mini-cart-brief text-left">
 														<div class="cart-items">
-															<p class="mb-0">Du hast <span>0 Artikel</span> in deinem Warenkorb</p>
+															<p class="mb-0"></p>
 														</div>
 														<div class="all-cart-product clearfix">
 															
@@ -77,7 +85,7 @@
 															<h5 class="mb-0">Total <span class="floatright">00.00 €</span></h5>
 														</div>
 														<div class="cart-bottom  clearfix">
-															<a href="cart.html" class="button-one floatleft text-uppercase" data-text="zum Warenkorb">zum Warenkorb</a>
+															<a href="cart.html" class="button-one floatleft text-uppercase" data-i18n="cart-link" >zum Warenkorb</a>
 														</div>
 													</div>
 												</li>
@@ -462,7 +470,7 @@
 			<div class="mt-40 text-center">
 				<div class="product-area container" >
 						<div class="row cus-row-30">
-							<button id="categorymenubutton" onclick="categoriemenutoggle()" class="option-btn" >ausklappen <i  style="font-size:1.8rem" class="zmdi zmdi-caret-down"></i></button>
+							<button data-i18n="expand" id="categorymenubutton" onclick="categoriemenutoggle()" class="option-btn" >ausklappen <i  style="font-size:1.8rem" class="zmdi zmdi-caret-down"></i></button>
 						</div>
 				</div>
 			</div>
@@ -476,14 +484,14 @@
 								<div class="product-option mb-30 clearfix">
 									<!-- Categories start -->
 									<div class="dropdown floatleft">
-										<button class="option-btn" >
+										<button data-i18n="category" class="i18n-shop-filter-category option-btn" >
 										Kategorie
 										</button>
 										<div class="dropdown-menu dropdown-width" >
 											<!-- Widget-Categories start -->
 											<aside class="widget widget-categories">
 												<div class="widget-title">
-													<h4>Kategorie</h4>
+													<h4 data-i18n="category">Kategorie</h4>
 												</div>
 												<div id="cat-treeview"  class="widget-info product-cat boxscrol2">
 													<ul>
@@ -495,13 +503,14 @@
 										</div>
 									</div>	
 									<!-- Categories end -->
-									<!-- price start -->
-									<div class="dropdown floatleft">
+									<!-- price start  uncomment to enable price filter-->
+									
+									<!-- <div class="dropdown floatleft">
 										<button class="option-btn">
 										Preis
 										</button>
 										<div class="dropdown-menu dropdown-width">
-											<!-- Shop-Filter start -->
+									
 											<aside class="widget shop-filter">
 												<div class="widget-title">
 													<h4>Preisfilter</h4>
@@ -521,9 +530,9 @@
 													</div>
 												</div>
 											</aside>
-											<!-- Shop-Filter end -->
+						
 										</div>
-									</div>
+									</div> -->
 									<!-- price end -->
 									<!-- price start -->
 									<div class="dropdown floatleft">
@@ -534,7 +543,7 @@
 											<!-- Shop-Filter start -->
 											<aside class="widget shop-filter">
 												<div class="widget-title">
-													<h4>Produktsuche</h4>
+													<h4 data-i18n="productsearch">Produktsuche</h4>
 												</div>
 												<div class="widget-info">
 													<input type="text" onkeydown="setTextFilter(event)" id="filter-product" />
@@ -545,8 +554,11 @@
 									</div>
 									<!-- price end -->
 												
-									<div class="showing text-right">
-										<p class="mb-0 hidden-xs">Showing 01-09 of 17 Results</p>
+									<div class="showing text-right hidden-xs">
+										<p data-i18n="" class="mb-0">Showing 01-09 of 17 Results</p>
+									</div>
+									<div class="showing_xs text-right visible-xs">
+										<p class="mb-0">Showing 01-09 of 17 Results</p>
 									</div>
 								</div>						
 							</div>	
@@ -594,21 +606,21 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
 								<div class="single-footer">
-									<h3 class="footer-title  title-border">Kontakt</h3>
+									<h3 data-i18n="footer-contact" class="footer-title  title-border">Kontakt</h3>
 									<ul class="footer-contact">
-										<li><span>Adresse :</span>Gothaer Straße 15<br>40880 Ratingen</li>
-										<li><span>Telefon :</span>+49 (0) 2102 - 92 76 155</li>
-										<li><span>Email :</span>support@XXXXXXXX</li>
+										<li><span data-i18n="footer-address">Adresse :</span>Gothaer Straße 15<br>40880 Ratingen</li>
+										<li><span data-i18n="footer-telefon">Telefon :</span>+49 (0) 2102 - 92 76 155</li>
+										<li><span data-i18n="footer-mail">Email :</span>support@XXXXXXXX</li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 								<div class="single-footer">
-									<h3 class="footer-title  title-border">Rechtliches</h3>
+									<h3 data-i18n="footer-middle-headline" class="footer-title  title-border">Rechtliches</h3>
 									<ul class="footer-menu">
-										<li><a href="imprint.html"><i class="zmdi zmdi-chevron-right"></i>Impressum</a></li>
-										<li><a href="privacy.html"><i class="zmdi zmdi-chevron-right"></i>Datenschutz</a></li>
-										<li><a href="terms.html"><i class="zmdi zmdi-chevron-right"></i>Allgemeine Geschäftsbedingungen</a></li>
+										<li><a href="imprint.html" data-i18n="footer-imprint">Impressum</a></li>
+										<li><a href="privacy.html" data-i18n="footer-dataprivacy">Datenschutz</a></li>
+										<li><a href="terms.html" data-i18n="footer-terms">Allgemeine Geschäftsbedingungen</a></li>
 									</ul>
 								</div>
 							</div>
@@ -739,9 +751,19 @@
 		<script src="js/velocity.min.js"></script>
 		<script src="js/filtermanager.js"></script>
 
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
+
 		<script>
-					initProducts();
-					initCart();
+	
+				initProducts();
+				initCart();
+		
 		</script>
 
 	</body>

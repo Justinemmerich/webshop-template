@@ -56,9 +56,17 @@
 										</div>
 									</div>
 									<div class="col-sm-4 col-xs-5">
-										<div class="mini-cart text-right" style="display: none">
+										<div class="mini-cart text-right">
 											<ul>
-												<li>
+													<li class="language-selection-list">
+															<div class="language-selection-div">
+																	<select class="form-control language-selection" >
+																	  <option value="de">DE</option>
+																	  <option value="en">EN</option>
+																	</select>
+																  </div>
+													</li>
+												<li  style="display: none">
 													<a class="cart-icon" href="#">
 														<i class="zmdi zmdi-shopping-cart"></i>
 														<span>0</span>
@@ -237,7 +245,7 @@
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-											<li><a href="checkout.html"><i class="zmdi zmdi-long-arrow-left"></i> zu den Adressdaten</a></li>
+											<li><a href="checkout.html"><i class="zmdi zmdi-long-arrow-left"></i><span data-i18n="ordercompletepage-toaddress">zu den Adressdaten</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -254,10 +262,10 @@
 							<div class="shopping-cart">
 								<!-- Nav tabs -->
 								<ul class="cart-page-menu row clearfix mb-30">
-									<li><a href="cart.html" >Warenkorb</a></li>
-									<li><a href="options.html">Geschenkoption</a></li>
-									<li><a href="checkout.html">Adressdaten</a></li>
-									<li class="active"><a>Übersicht</a></li>
+									<li><a href="cart.html" data-i18n="cartpage-cart-title">Warenkorb</a></li>
+									<li><a href="options.html" data-i18n="cartpage-gift-title">Geschenkoption</a></li>
+									<li><a href="checkout.html" data-i18n="cartpage-adress-title">Adressdaten</a></li>
+									<li class="active"><a data-i18n="cartpage-overview-title">Übersicht</a></li>
 								</ul>
 
 								<!-- Tab panes -->
@@ -268,19 +276,19 @@
 										<form action="#">
 											<div class="order-info bg-white text-center clearfix mb-30">
 												<div class="single-order-info">
-													<h4 class="title-1 text-uppercase text-light-black mb-0">Bestellnummer</h4>
+													<h4 class="title-1 text-uppercase text-light-black mb-0" data-i18n="ordercompletepage-ordernumber">Bestellnummer</h4>
 													<p id="top_ordernumber" class="text-uppercase text-light-black mb-0"><strong>m 2653257</strong></p>
 												</div>
 												<div class="single-order-info">
-													<h4 class="title-1 text-uppercase text-light-black mb-0">Datum</h4>
+													<h4 class="title-1 text-uppercase text-light-black mb-0" data-i18n="ordercompletepage-date" >Datum</h4>
 													<p id="top_orderdate" class="text-uppercase text-light-black mb-0"><strong>june 15, 2016</strong></p>
 												</div>
 												<div class="single-order-info">
-													<h4 class="title-1 text-uppercase text-light-black mb-0">Betrag</h4>
+													<h4 class="title-1 text-uppercase text-light-black mb-0" data-i18n="ordercompletepage-sum">Betrag</h4>
 													<p id="top_total" class="text-uppercase text-light-black mb-0"><strong>$ 170.00</strong></p>
 												</div>
 												<div class="single-order-info">
-													<h4 class="title-1 text-uppercase text-light-black mb-0">Bezahlmethode</h4>
+													<h4 class="title-1 text-uppercase text-light-black mb-0" data-i18n="ordercompletepage-paymentmethod" >Bezahlmethode</h4>
 													<p id="top_payment" class="text-uppercase text-light-black mb-0"><a href="#"><strong>check payment</strong></a></p>
 												</div>
 											</div>
@@ -288,13 +296,13 @@
 												<div class="row">
 													<div class="col-md-6 col-sm-6 col-sm-12">
 														<div class="our-order payment-details pr-20">
-															<h4 class="title-1 title-border text-uppercase mb-30">Deine Bestellung</h4>
+															<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-yourorder">Deine Bestellung</h4>
 															<table>
 																<thead>
 																	<tr>
-																		<th><strong>Artikel</strong></th>
-																		<th><strong>Menge</strong></th>
-																		<th class="text-right"><strong>Total</strong></th>
+																		<th><strong data-i18n="ordercompletepage-table-items">Artikel</strong></th>
+																		<th><strong data-i18n="ordercompletepage-table-quantity">Menge</strong></th>
+																		<th class="text-right" data-i18n="ordercompletepage-table-total"><strong>Total</strong></th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -306,11 +314,11 @@
 													<!-- shipping information -->
 													<div class="col-md-6 col-sm-6 col-sm-12">
 														<div class="our-order payment-details pr-20">
-															<h4 class="title-1 title-border text-uppercase mb-30">Adressdaten</h4>
+															<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-adressdata">Adressdaten</h4>
 															<table>
 																<thead>
 																	<tr>
-																		<th><strong>Rechnungsanschrift</strong></th>
+																		<th><strong data-i18n="checkoutpage-billingdetails">Rechnungsanschrift</strong></th>
 																	</tr>
 																</thead>
 																<tbody id="billingadress">
@@ -318,7 +326,7 @@
 																</tbody>
 																<thead>
 																	<tr>
-																		<th><strong>Lieferanscharift</strong></th>
+																		<th><strong data-i18n="checkoutpage-shippingdetails">Lieferanscharift</strong></th>
 																	</tr>
 																</thead>
 																<tbody id="shippingadress">
@@ -337,7 +345,7 @@
 								<div class="row">
 										<div class=" col-md-12 col-sm-12 col-xs-12">
 											<div id ="creditcard" class="billing-details customer-login mt-30" style="display: none;">
-												<h4 class="title-1 title-border text-uppercase mb-30">Kreditkarten details</h4>
+												<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-creditcarddetails">Kreditkarten details</h4>
 												<input id="creditcard_number" type="text" placeholder="Kreditkartennummer" pattern="(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" />
 												<div class="row">
 													<div class="col-md-6 col-sm-12 col-xs-12">
@@ -349,31 +357,31 @@
 												</div>
 											</div>
 											<div id ="debitcard" class="debitcard billing-details customer-login mt-30" style="display: none;">
-													<h4 class="title-1 title-border text-uppercase mb-30">Bankeinzug details</h4>
+													<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-debitdetails">Bankeinzug details</h4>
 													<input id="debitcard_iban" type="text" placeholder="IBAN Nummer" pattern="DE\d{2}\s?([0-9a-zA-Z]{4}\s?){4}[0-9a-zA-Z]{2}$" />
 													<input id="debitcard_bic" type="text" placeholder="BIC Nummer" pattern="([a-zA-Z]{4})([a-zA-Z]{2})(([2-9a-zA-Z]{1})([0-9a-np-zA-NP-Z]{1}))((([0-9a-wy-zA-WY-Z]{1})([0-9a-zA-Z]{2}))|([xX]{3})|)" />
 											</div>
 											<div id="paypal" class="paypal billing-details customer-login mt-30" style="display: none;">
-													<h4 class="title-1 title-border text-uppercase mb-30">Paypal Zahlungshinweis</h4>
-													<p>Sie werden nach mit dem absenden der Bestellung auf Paypal weitergeleitet</p>
+													<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-paypalpaymentnote">Paypal Zahlungshinweis</h4>
+													<p data-i18n="ordercompletepage-paypalinformation">Sie werden nach mit dem absenden der Bestellung auf Paypal weitergeleitet</p>
 											</div>
-											<div id="payment_in_advice" class="payment_in_advice billing-details customer-login mt-30" style="display: none;">
-													<h4 class="title-1 title-border text-uppercase mb-30">Vorkasse Zahlungshinweis</h4>
-													<p>Unsere Zahlungsdaten werden Ihnen nach dem absenden der Bestellung bereitgestellt.</p>
+											<div id="payment_in_advance" class="payment_in_advance billing-details customer-login mt-30" style="display: none;">
+													<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="ordercompletepage-paymentinadvancenote">Vorkasse Zahlungshinweis</h4>
+													<p data-i18n="ordercompletepage-paymentinadvanceinformation">Unsere Zahlungsdaten werden Ihnen nach dem absenden der Bestellung bereitgestellt.</p>
 											</div>
 										</div>
 									</div>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="customer-login mt-30">
-												<input id="agb" required onchange="onCheckboxChange()" type="checkbox" style="margin-bottom: 15px;">Ich habe die Datenschutzbestimmungen und die Allgemeinen Geschäftsbedingungen gelesen und verstanden, und akzeptiere diese ausdrücklich.<br>
+												<input id="agb" required onchange="onCheckboxChange()" type="checkbox" style="margin-bottom: 15px;"><span data-i18n="ordercompletepage-dataprivacyinformation">Ich habe die Datenschutzbestimmungen und die Allgemeinen Geschäftsbedingungen gelesen und verstanden, und akzeptiere diese ausdrücklich.</span><br>
 										</div>											
 									</div>
 								</div>
 								<div class="row">
 										<div class="col-md-12">
 											<div class="customer-login mt-30">
-												<button id="checkoutButton" type="submit" onclick="validateForCheckout()" data-text="Jetzt kostenpflichtig Bestellen" class=" button-one submit-button next-button mt-15">Jetzt kostenpflichtig Bestellen</button>
+												<button id="checkoutButton" type="submit" onclick="validateForCheckout()" data-text="Jetzt kostenpflichtig Bestellen" class=" button-one submit-button next-button mt-15" data-i18n="ordercompletepage-ordernow">Jetzt kostenpflichtig Bestellen</button>
 											</div>											
 										</div>
 								</div>
@@ -559,6 +567,14 @@
 		<script src="js/ordercomplete.js"></script>
 		<script src="js/routing.js"></script>
 		<script src="js/loader.js"></script>
+
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
 
 		<script>
 					initCart();

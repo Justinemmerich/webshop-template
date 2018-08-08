@@ -79,10 +79,19 @@
 										</div>
 									</div>
 									<div class="col-sm-4 col-xs-5">
-										<div class="mini-cart text-right" style="display: none">
+										<div class="mini-cart text-right">
 											<ul>
-												<li>
-													<a class="cart-icon" href="#">
+													<li class="language-selection-list">
+															<div class="language-selection-div">
+																	<select class="form-control language-selection" >
+																	  <option value="de">DE</option>
+																	  <option value="en">EN</option>
+																	</select>
+																  </div>
+													</li>
+
+												<li style="display: none">
+													<a class="cart-icon" href="#" >
 														<i class="zmdi zmdi-shopping-cart"></i>
 														<span>0</span>
 													</a>
@@ -260,7 +269,7 @@
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-											<li><a href="shop.html"><i class="zmdi zmdi-long-arrow-left"></i> zum Shop</a></li>
+											<li><a href="shop.html"><i class="zmdi zmdi-long-arrow-left"></i> <span data-i18n="cartpage-toshop">zum Shop</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -277,10 +286,10 @@
 							<div class="shopping-cart">
 								<!-- Nav tabs -->
 								<ul class="cart-page-menu row clearfix mb-30">
-									<li class="active"><a >Warenkorb</a></li>
-									<li ><a href="options.html">Geschenkoption</a></li>
-									<li><a href="checkout.html" >Adressdaten</a></li>
-									<li><a >Übersicht</a></li>
+									<li class="active"><a data-i18n="cartpage-cart-title">Warenkorb</a></li>
+									<li ><a href="options.html" data-i18n="cartpage-gift-title">Geschenkoption</a></li>
+									<li><a href="checkout.html" data-i18n="cartpage-adress-title">Adressdaten</a></li>
+									<li><a data-i18n="cartpage-overview-title">Übersicht</a></li>
 								</ul>
 
 								<!-- Tab panes -->
@@ -292,11 +301,11 @@
 													<table>
 														<thead>
 															<tr>
-																<th class="product-thumbnail">Artikel</th>
-																<th class="product-price">Stückpreis</th>
-																<th class="product-quantity">Anzahl</th>
-																<th class="product-subtotal">Gesamt</th>
-																<th class="product-remove">löschen</th>
+																<th class="product-thumbnail" data-i18n="cartpage-table-title-item">Artikel</th>
+																<th class="product-price" data-i18n="cartpage-table-title-priceperpiece">Stückpreis</th>
+																<th class="product-quantity" data-i18n="cartpage-table-title-quantities">Anzahl</th>
+																<th class="product-subtotal" data-i18n="cartpage-table-title-total">Gesamt</th>
+																<th class="product-remove" data-i18n="cartpage-table-title-delete">löschen</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -385,10 +394,10 @@
 											<div class="row">
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<div class="customer-login mt-30" style="padding-bottom: 95px">
-														<h4 class="title-1 title-border text-uppercase">Gutschein & Rabatt</h4>
-														<p class="text-gray">Tragen Sie Ihren vorhandenen Gutscheincode hier ein!</p>
-														<input type="text" placeholder="Geben Sie hier Ihren Gutscheincode ein..">
-														<a type="submit" onclick="addCoupon(this)" data-text="Code einlösen" class="button-one submit-button mt-15">Code einlösen</a>
+														<h4 class="title-1 title-border text-uppercase" data-i18n="cartpage-couponarea-title">Gutschein & Rabatt</h4>
+														<p class="text-gray" data-i18n="cartpage-couponarea-description">Tragen Sie Ihren vorhandenen Gutscheincode hier ein!</p>
+														<input type="text" placeholder="couponcode...">
+														<a type="submit" onclick="addCoupon(this)" data-text="Code einlösen" class="button-one submit-button mt-15" data-i18n="cartpage-couponarea-button">Code einlösen</a>
 													</div>
 												</div>
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -397,27 +406,31 @@
 														<table>
 															<tbody>
 																<tr>
-																	<td class="text-left">Warenkorb Gesamt</td>
+																	<td class="text-left" data-i18n="cartpage-sumup-totalcart">Warenkorb Gesamt</td>
 																	<td id="payment_cart" class="text-right">$155.00</td>
 																</tr>
 																<tr>
-																		<td id="payment_coupon_text" class="text-left">Rabatt</td>
+																		<td id="payment_coupon_text" class="text-left" data-i18n="cartpage-sumup-discount">Rabatt</td>
 																		<td id="payment_coupon" class="text-right">$00.00</td>
 																	</tr>
+																	<tr>
+																		<td id="payment_shipping_text" class="text-left" data-i18n="cartpage-sumup-likelyshippingcosts">vsl. Versandkosten (DE)</td>
+																		<td id="payment_shipping" class="text-right">$00.00</td>
+																	</tr>
 																<tr>
-																	<td class="text-left">Gesamt</td>
+																	<td class="text-left" data-i18n="cartpage-sumup-total">Gesamt</td>
 																	<td id="payment_total" class="text-right">$170.00</td>
 																</tr>
 															</tbody>
 														</table>
-														<p class="text-gray" style="padding: 20px 30px">zzgl. Versandkosten. Informationen findest Du hier <a href="">Berechnung der Versandkosten</a></p>
+														<p class="text-gray" style="padding: 20px 30px"><span data-i18n="cartpage-sumup-shippinginfo">Versandkosten. Informationen findest Du hier!</span> <a href="shippingcosts.html" data-i18n="cartpage-sumup-shippinginfo-link">Berechnung der Versandkosten</a></p>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="customer-login mt-30">
-														<a href="options.html" data-text="Zum Checkout" class="button-one submit-button next-button mt-15">Zum Checkout</a>
+														<a href="options.html" data-text="Zum Checkout" class="button-one submit-button next-button mt-15" data-i18n="cartpage-tocheckout-button">Zum Checkout</a>
 													</div>											
 												</div>
 											</div>
@@ -952,6 +965,14 @@
 		<script src="js/loader.js"></script>
 		<script src="js/animation.js"></script>
 		<script src="js/velocity.min.js"></script>
+
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
 
 		<script>
 					initCart();

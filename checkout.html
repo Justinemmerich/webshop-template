@@ -57,9 +57,17 @@
 									</div>
 									<div class="col-sm-4 col-xs-5">
 										<!-- do not show mini cart -->
-										<div class="mini-cart text-right" style="display: none">
+										<div class="mini-cart text-right">
 											<ul>
-												<li>
+													<li class="language-selection-list">
+															<div class="language-selection-div">
+																	<select class="form-control language-selection" >
+																	  <option value="de">DE</option>
+																	  <option value="en">EN</option>
+																	</select>
+																  </div>
+													</li>
+												<li style="display: none">
 													<a class="cart-icon" href="#">
 														<i class="zmdi zmdi-shopping-cart"></i>
 														<span>0</span>
@@ -238,7 +246,7 @@
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-											<li><a href="options.html"><i class="zmdi zmdi-long-arrow-left"></i> zur Geschenkoption</a></li>
+											<li><a href="options.html"><i class="zmdi zmdi-long-arrow-left"></i><span data-i18n="checkoutpage-tooptions">zur Geschenkoption</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -257,10 +265,10 @@
 								<!-- Nav tabs -->
 							
 								<ul class="cart-page-menu row clearfix mb-30">
-									<li><a href="cart.html" >Warenkorb</a></li>
-									<li><a href="options.html">Geschenkoption</a></li>
-									<li class="active"><a>Adressdaten</a></li>
-									<li onMouseOver="cursor: pointer;"><a onclick="document.getElementById('submitbutton').click()">Übersicht</a></li>
+									<li><a href="cart.html" data-i18n="cartpage-cart-title">Warenkorb</a></li>
+									<li><a href="options.html" data-i18n="cartpage-gift-title">Geschenkoption</a></li>
+									<li class="active"><a data-i18n="cartpage-adress-title">Adressdaten</a></li>
+									<li onMouseOver="cursor: pointer;"><a onclick="document.getElementById('submitbutton').click()" data-i18n="cartpage-overview-title">Übersicht</a></li>
 								</ul>
 
 								<!-- Tab panes -->
@@ -272,7 +280,7 @@
 												<div class="row">
 													<div class="col-md-12 col-sm-12 col-xs-12">
 														<div class="billing-details">
-															<h4 class="title-1 title-border text-uppercase mb-30">Rechnungsdetails</h4>
+															<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="checkoutpage-billingdetails">Rechnungsdetails</h4>
 															<input id="billing_forename" type="text" placeholder="Vorname" required />
 															<input id="billing_lastname" type="text" placeholder="Nachname" required />
 															<input id="billing_email" type="text" placeholder="Emailadresse" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
@@ -284,12 +292,12 @@
 																<option>Deutschland</option>
 															</select>
 															<textarea id="billing_notes" class="custom-textarea" placeholder="Notizen" ></textarea>
-															<input id="has_divergent_shippingadress" onchange="onCheckboxChange()" type="checkbox" style="margin-bottom: 15px;">abweichende Lieferanschrift<br>
+															<input id="has_divergent_shippingadress" onchange="onCheckboxChange()" type="checkbox" style="margin-bottom: 15px;" ><span data-i18n="checkoutpage-alternativedeliveryaddress">abweichende Lieferanschrift</span><br>
 														</div>
 													</div>
 													<div id="shippingadress" class="col-md-12 col-sm-12 col-xs-12 pt-20" style="display: none;">
 														<div class="billing-details">
-															<h4 class="title-1 title-border text-uppercase mb-30">Lieferanschrift</h4>
+															<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="checkoutpage-shippingdetails">Lieferanschrift</h4>
 															<input id="shipping_forename" type="text" placeholder="Vorname">
 															<input id="shipping_lastname" type="text" placeholder="Nachname">
 															<input id="shipping_company" type="text" placeholder="Firmenname">
@@ -310,31 +318,31 @@
 												<!-- payment-method -->
 												<div class="col-md-12 col-sm-12 col-xs-12 mt-60">
 													<div class="customer-login payment-method">
-														<h4 class="title-1 title-border text-uppercase mb-30">Bezahlmethode wählen</h4>
+														<h4 class="title-1 title-border text-uppercase mb-30" data-i18n="checkoutpage-paymentmethod-title">Bezahlmethode</h4>
 														<div class="payment-accordion">
 															<!-- Accordion start  -->
-															<h3 id="payment_in_advice" onclick="onPaymentChange('payment_in_advice')" class="payment-accordion-toggle"><i class="zmdi zmdi-money pr-10"></i></i>Vorkasse</h3>
-															<div class="payment-content payment_in_advice">
-																<p>Keine zusätzlichen Gebühren. <br> Die Bezahlung wird im Vorraus von Dir auf das ausgewiesene Konto transferiert.</p>
-																<p><i class="zmdi zmdi-alert-triangle pr-10"></i> Die Artikel werden erst nach dem Geldeingang für den Versand vorbereitet!</p>
+															<h3 id="payment_in_advance" onclick="onPaymentChange('payment_in_advance')" class="payment-accordion-toggle"><i class="zmdi zmdi-money pr-10"></i><span data-i18n="checkoutpage-paymentmethod-inadvance">Vorkasse</span></h3>
+															<div class="payment-content payment_in_advance">
+																<p><span data-i18n="checkoutpage-paymentmethod-inadvance-2">Keine zusätzlichen Gebühren.</span><br><span data-i18n="checkoutpage-paymentmethod-inadvance-3">Die Bezahlung wird im Vorraus von Dir auf das ausgewiesene Konto transferiert.</span></p>
+																<p><i class="zmdi zmdi-alert-triangle pr-10"></i><span data-i18n="checkoutpage-paymentmethod-inadvance-4">Die Artikel werden erst nach dem Geldeingang für den Versand vorbereitet!</span></p>
 															</div>
-															<h3 id="direct_debit" onclick="onPaymentChange('direct_debit')" class="payment-accordion-toggle"><i class="zmdi zmdi-balance pr-10"></i>Bankeinzug</h3>
+															<h3 id="direct_debit" onclick="onPaymentChange('direct_debit')" class="payment-accordion-toggle"><i class="zmdi zmdi-balance pr-10"></i><span data-i18n="checkoutpage-paymentmethod-debit">Bankeinzug</span></h3>
 															<div class="payment-content direct_debit">
-																<p>Keine zusätzlichen Gebühren.<br> Der Rechnungsbetrag wird automatisch von deinem Konto eingezogen. Die Artikel werden sofort für den Versand vorbereitet.</p>
-																<p><i class="zmdi zmdi-alert-triangle pr-10"></i> Zurzeit ist die Zahlung per Bankeinzug nur in Deutschland möglich!</p>
+																<p><span data-i18n="checkoutpage-paymentmethod-debit-2">Keine zusätzlichen Gebühren.</span> <br> <span data-i18n="checkoutpage-paymentmethod-debit-3">Der Rechnungsbetrag wird automatisch von deinem Konto eingezogen. Die Artikel werden sofort für den Versand vorbereitet.</span></p>
+																<p><i class="zmdi zmdi-alert-triangle pr-10"></i> <span data-i18n="checkoutpage-paymentmethod-debit-4">Zurzeit ist die Zahlung per Bankeinzug nur in Deutschland möglich!</span></p>
 															</div> 
 															<!-- Accordion end -->
 															<!-- Accordion start -->
-															<h3 id="creditcard" onclick="onPaymentChange('creditcard')" class="payment-accordion-toggle"><i class="zmdi zmdi-card pr-10"></i>Kreditkarte</h3>
+															<h3 id="creditcard" onclick="onPaymentChange('creditcard')" class="payment-accordion-toggle"><i class="zmdi zmdi-card pr-10"></i><span data-i18n="checkoutpage-paymentmethod-creditcard">Kreditkarte</span></h3>
 															<div class="payment-content creditcard">
-																<p>Einfache und schnelle Bezahlung per Mastercard und Visa. <br> Deine Artikel werden sofort für den Versand vorbereitet.</p>
+																<p><span data-i18n="checkoutpage-paymentmethod-creditcard-2">Einfache und schnelle Bezahlung per Mastercard und Visa.</span> <br> <span data-i18n="checkoutpage-paymentmethod-creditcard-3">Deine Artikel werden sofort für den Versand vorbereitet.</span></p>
 															</div>
 															<!-- Accordion end -->
 															<!-- Accordion start -->
-															<h3 id="paypal" onclick="onPaymentChange('paypal')" class="payment-accordion-toggle"><i class="zmdi zmdi-paypal pr-10"></i>PayPal</h3>
+															<h3 id="paypal" onclick="onPaymentChange('paypal')" class="payment-accordion-toggle"><i class="zmdi zmdi-paypal pr-10"></i><span data-i18n="checkoutpage-paymentmethod-paypal">PayPal</span></h3>
 															<div class="payment-content ">
-																<p>Schnell und einfach per Paypal bezahlen.<br> Die Artikel werden sofort für den Versand vorbereitet.</p>
-																<p><i class="zmdi zmdi-alert-triangle pr-10"></i> Es wird ein aktives Paypal-Kundenkonto benötigt!</p>
+																<p><span data-i18n="checkoutpage-paymentmethod-paypal-2">Schnell und einfach per Paypal bezahlen.</span><br> <span data-i18n="checkoutpage-paymentmethod-paypal-3">Die Artikel werden sofort für den Versand vorbereitet.</span></p>
+																<p><i class="zmdi zmdi-alert-triangle pr-10"></i> <span data-i18n="checkoutpage-paymentmethod-paypal-4">Es wird ein aktives Paypal-Kundenkonto benötigt!</span></p>
 															</div>
 															<!-- Accordion end --> 	
 														</div>															
@@ -344,7 +352,7 @@
 											<div class="row">
 												<div class="col-md-12">
 													<div class="customer-login mt-30">
-														<button id="submitbutton" onclick="onFormvalid()" data-text="zur Bestellübersicht" class="button-one submit-button next-button mt-15">zur Bestellübersicht</button>
+														<button id="submitbutton" onclick="onFormvalid()" data-text="zur Bestellübersicht" class="button-one submit-button next-button mt-15" data-i18n="checkoutpage-tooverview">zur Bestellübersicht</button>
 													</div>											
 												</div>
 											</div>
@@ -635,6 +643,14 @@
 		<script src="js/checkout.js"></script>
 		<script src="js/routing.js"></script>
 		<script src="js/loader.js"></script>
+
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
 
 		<script>
 					initCart();

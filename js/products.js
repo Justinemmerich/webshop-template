@@ -12,6 +12,7 @@ function initProducts(){
 
 function loadCategories() {
     // TODO replace with Backend Query
+    categories = [];
     categories.push('Holz');
     categories.push('Metall');
     categories.push('Kaugummi');
@@ -40,7 +41,7 @@ function renderCategories(){
 
         var li = document.createElement('li');
         if (checked == true && filter.categories.length !== 0){
-            li.innerHTML = '<span><input id="categorie-'+categories[i]+'" data-categorie="'+categories[i]+'" type="checkbox" onchange="setCategorieFilter(this)" checked="'+checked+'" />'+categories[i]+'</span>';
+            li.innerHTML = '<span><input id="categorie-'+categories[i]+'" data-categorie="'+categories[i]+'" type="checkbox" onchange="setCategorieFilter(this)" checked="'+checked+'"/>'+categories[i]+'</span>';
         } else {
             li.innerHTML = '<span><input id="categorie-'+categories[i]+'" data-categorie="'+categories[i]+'" type="checkbox" onchange="setCategorieFilter(this)" />'+categories[i]+'</span>';     
         }
@@ -122,11 +123,34 @@ function loadProducts() {
         {
             itemId:'001',
             images:['6.jpg'],
-            productname: 'Name aus Holz',
             seoname:'name-aus-holz',
             price:12.90,
-            categories:'Holz',
-
+            hasIndividualisation: true,
+            individualisationfields:[{
+                placeholder:"Tobias",
+                extention:"",
+                font:true,
+            },{
+                placeholder:"12:32Uhr",
+                extention:undefined,
+                font:true,
+            }],
+            label:'20%',
+            discount_price:10.32,
+            en:{
+                productname: 'Name in Wood',
+                categories:'Wood',
+                description: 'description englisch hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                description_big: 'description long Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                information: 'Information englisch Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+            },
+            de:{
+                productname: 'Name aus Holz',
+                categories:'Holz',
+                description: 'Beschreibung hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                description_big: 'Beschreibung hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+                information: 'Information hier Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+            }
         },
         {
             itemId:'002',
@@ -135,6 +159,7 @@ function loadProducts() {
             seoname:'schluesselanhaenger-gravur',
             price:17.45,
             categories:'Metall',
+            label:'Mega',
         },
         {
             itemId:'003',
@@ -143,6 +168,7 @@ function loadProducts() {
             seoname:'holz-und--metall',
             price:1000.45,
             categories:'Metall',
+            label:'Aktion',
         },
         {
             itemId:'004',
@@ -212,9 +238,11 @@ function renderProducts(){
     // clear all products
     document.getElementById('product-list').innerHTML = '';
 
+
     // render all product carts
     for (var i = 0; i < filtered_products.length; i++ ){
 
+    var hasLabel = filtered_products[i].label !== undefined? 'block': 'none';
 
     //TODO remove single-product href # with / in live (Webserver config for seo)
     var div = document.createElement('div');
@@ -222,7 +250,7 @@ function renderProducts(){
     div.style.opacity = 0;
     div.innerHTML = '   <div class="single-product">\
                         <div class="product-img">\
-                        <span class="pro-label new-label">new</span>\
+                        <span style="display:'+hasLabel+'" class="pro-label new-label"><span class="text-label">'+filtered_products[i].label+'</span></span>\
                         <span class="pro-price-2">'+filtered_products[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 })+' €</span>\
                         <a href="single-product.html#'+filtered_products[i].itemId+'#'+filtered_products[i].seoname+'"><img data-filename="'+filtered_products[i].images[0]+'" src="img/product/'+filtered_products[i].images[0]+'" alt="" /></a>\
                         </div>\
@@ -236,7 +264,7 @@ function renderProducts(){
                         </span>\
                         </div>\
                         <div class="product-action clearfix">\
-                        <a href="single-product.html#'+filtered_products[i].itemId+'#'+filtered_products[i].seoname+'" data-placement="top"> Details zum Produkt</i></a>\
+                        <a href="single-product.html#'+filtered_products[i].itemId+'#'+filtered_products[i].seoname+'" data-i18n="productdetails" data-placement="top"> Details zum Produkt</i></a>\
                         </div>\
                         </div>\
                         </div>';
@@ -250,7 +278,8 @@ function renderProducts(){
     } // End for-loop
 
     // Set Showing results text
-    document.getElementsByClassName('showing')[0].querySelector('p').innerHTML= 'Zeige ' +filtered_products.length+ ' von gesamt ' +products.length+ ' Artikeln';
+    document.getElementsByClassName('showing')[0].querySelector('p').innerHTML= $.i18n( 'showing' ) + ' ' +filtered_products.length+ ' ' + $.i18n( 'oftotal' ) + ' ' +products.length+ ' ' + $.i18n( 'items' );
+    document.getElementsByClassName('showing_xs')[0].querySelector('p').innerHTML= '' +filtered_products.length+ ' / ' +products.length+ ' ' + $.i18n( 'items' );
 
     renderCategories();
 
@@ -275,7 +304,8 @@ function categoriemenutoggle() {
     categorymenu_expanded = !categorymenu_expanded;
 
     if(categorymenu_expanded === true){
-        document.getElementById("categorymenubutton").innerHTML= 'einklappen <i  style="font-size:1.8rem" class="zmdi zmdi-caret-up"></i>';
+        document.getElementById("categorymenubutton").setAttribute('data-i18n', 'collapse');
+        document.getElementById("categorymenubutton").innerHTML= '' + $.i18n( 'collapse' ) + '<i  style="font-size:1.8rem" class="zmdi zmdi-caret-up"></i>';
       
         document.getElementById("categorymenu-slider").velocity({ opacity: 0 },750);
         document.getElementById("categorymenu-slider").style.display = 'none';
@@ -284,7 +314,8 @@ function categoriemenutoggle() {
         document.getElementById("categorymenu-expanded").style.display = 'block';
         document.getElementById("categorymenu-expanded").velocity({ opacity: 1 },750);
     } else{
-        document.getElementById("categorymenubutton").innerHTML= 'ausklappen <i  style="font-size:1.8rem" class="zmdi zmdi-caret-down"></i>';
+        document.getElementById("categorymenubutton").setAttribute('data-i18n', 'expand');
+        document.getElementById("categorymenubutton").innerHTML= '' + $.i18n( 'expand' ) + '<i  style="font-size:1.8rem" class="zmdi zmdi-caret-down"></i>';
 
         document.getElementById("categorymenu-expanded").velocity({ opacity: 0 },750);
         document.getElementById("categorymenu-expanded").style.display = 'none';
@@ -304,3 +335,4 @@ function onCategoriemenuclick(element) {
     //rerender products
     renderProducts();
 }
+

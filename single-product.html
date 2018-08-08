@@ -59,19 +59,77 @@
 				<div class="modal-content">
 					<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Produkt benötigt Individualisierung</h4>
+					<h4 class="modal-title" data-i18n="singleproduct-modal-idividualisation-title">Produkt benötigt Individualisierung</h4>
 					</div>
 					<div class="modal-body">
-					<p>Das von Dir gewählte Produkt benötigt eine Individualisierung. Bitte fülle das Feld mit dem zu bedruckendem Text.</p>
-					<p>Vielen Dank!</p>
+					<p data-i18n="singleproduct-modal-idividualisation-text">Das von Dir gewählte Produkt benötigt eine Individualisierung. Bitte fülle das Feld mit dem zu bedruckendem Text.</p>
+					<p data-i18n="singleproduct-modal-idividualisation-thanks">Vielen Dank!</p>
 					</div>
 					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="singleproduct-modal-idividualisation-close">Schließen</button>
 					</div>
 				</div>	
 			</div>
 		</div>
-		<!-- WRAPPER START -->
+		<!-- Decor Modal -->
+		<div class="modal fade" id="selectdecormodal" role="dialog">
+			<div class="modal-dialog" style="padding-top:150px">
+			
+				<!-- Modal content-->
+				<div class="modal-content" id="selectdecormodal-content" style="border: none">
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/1.jpeg', 1)" src="/img/decor/1.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/2.jpeg', 2)" src="/img/decor/2.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/3.jpeg', 3)" src="/img/decor/3.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/4.jpeg', 4)" src="/img/decor/4.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/5.jpeg', 5)" src="/img/decor/5.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/6.jpeg', 6)" src="/img/decor/6.jpeg" class="img-responsive">
+						</div>
+						<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-6 mb-30">
+								<img onclick="chooseDecorfromGallery('/img/decor/7.jpeg', 7)" src="/img/decor/7.jpeg" class="img-responsive">
+						</div>
+				</div>	
+			</div>
+		</div>
+
+			<!-- Decor Modal -->
+			<div class="modal fade" style="z-index:999999999999 !important" id="selectfontmodal" role="dialog">
+					<div class="modal-dialog" style="padding-top:50px">
+					
+						<!-- Modal content-->
+						<div class="modal-content" id="selectfontmodal-content" style="border: none; text-align: center" >
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family: SARINA;" class="fontGalleryPreview" id="fontGalleryPreview1"></label>
+								</div>
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family: COOKIE;" class="fontGalleryPreview" id="fontGalleryPreview2"></label>
+								</div>
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family: ITALIANBREAKFAST;" class="fontGalleryPreview" id="fontGalleryPreview3"></label>
+								</div>
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family:  MOLLE;" class="fontGalleryPreview" id="fontGalleryPreview4"></label>
+								</div>
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family: OCTOBERTWILIGHT;" class="fontGalleryPreview" id="fontGalleryPreview5"></label>
+								</div>
+								<div class=" col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-30">
+										<label onclick="chooseFontfromGallery(this)" style="font-family: PECITA;" class="fontGalleryPreview" id="fontGalleryPreview6"></label>
+								</div>
+						</div>	
+					</div>
+				</div>
+ 		<!-- WRAPPER START -->
 		<div class="wrapper bg-dark-white">
 
 			<!-- HEADER-AREA START -->
@@ -87,6 +145,14 @@
 							<div class="col-sm-4 col-xs-5">
 								<div class="mini-cart text-right">
 									<ul>
+											<li class="language-selection-list">
+													<div class="language-selection-div">
+															<select class="form-control language-selection" >
+															  <option value="de">DE</option>
+															  <option value="en">EN</option>
+															</select>
+														  </div>
+											</li>
 										<li>
 											<a class="cart-icon" href="#">
 												<i class="zmdi zmdi-shopping-cart"></i>
@@ -266,7 +332,7 @@
 								</div>
 								<div class="breadcumbs pb-15">
 									<ul>
-										<li><a href="shop.html"><i class="zmdi zmdi-long-arrow-left"></i> zur Übersicht</a></li>
+										<li><a href="shop.html"><i class="zmdi zmdi-long-arrow-left"></i><span data-i18n="singleproduct-tooverview">zur Übersicht</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -299,9 +365,15 @@
 									</div>
 									<!-- Size start -->
 									<div class="individualisation mb-35 clearfix">
-										<p class="color-title text-capitalize">Individualisierung: </p>
+										<p class="color-title text-capitalize" data-i18n="singleproduct-individualisation-title">Individualisierung: </p>
+										<ul id="individualisation-container">
+											
+										</ul>
 										<ul>
-											<li style="width: 100%;"><input class="individual-text" style="width: 100%;" type="text" placeholder="Individueller Text hier ..."></li>
+											<li style="text-align: center">
+													<p class="text-capitalize" data-i18n="singleproduct-decor-title">Dekor </p>
+													<img onclick="openDecorGallery(this)" src="/img/decor/1.jpeg" width="100px">
+											</li>
 										</ul>
 									</div>
 									<!-- Size end -->
@@ -310,7 +382,7 @@
 											<input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
 										</div>
 										<div class="product-action clearfix">
-											<a onclick="addSingleProductToCart(this)" data-placement="top" ><i class="zmdi zmdi-shopping-cart-plus"> in den Warenkorb</i></a>
+											<a onclick="addSingleProductToCart(this)" data-placement="top" ><i class="zmdi zmdi-shopping-cart-plus"></i><span data-i18n="singleproduct-addtocart">in den Warenkorb</span></a>
 										</div>
 									</div>
 									<!-- Single-pro-slider Small-photo start -->
@@ -329,8 +401,8 @@
 								<div class="single-pro-tab-menu">
 									<!-- Nav tabs -->
 									<ul class="">
-										<li class="active"><a href="#description" data-toggle="tab">Beschreibung</a></li>
-										<li><a href="#information" data-toggle="tab">Informationen</a></li>
+										<li class="active"><a href="#description" data-toggle="tab" data-i18n="singleproduct-description-title">Beschreibung</a></li>
+										<li><a href="#information" data-toggle="tab" data-i18n="singleproduct-information-title">Informationen</a></li>
 									</ul>
 								</div>
 							</div>
@@ -346,7 +418,7 @@
 					
 									<div class="tab-pane" id="information">
 										<div class="pro-tab-info pro-information">
-											<h3 class="tab-title title-border mb-30">Produktinformationen</h3>
+											<h3 class="tab-title title-border mb-30" data-i18n="singleproduct-productinformation-title">Produktinformationen</h3>
 											<p></p>
 										</div>											
 									</div>
@@ -536,6 +608,14 @@
 		<script src="js/loader.js"></script>
 		<script src="js/animation.js"></script>
 		<script src="js/velocity.min.js"></script>
+
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
 
 		<script>
 					 $("#myModal").modal({show: false});		

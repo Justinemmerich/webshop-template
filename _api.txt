@@ -89,7 +89,8 @@ Response beispiel:
     "valid":true/false, 
     "amount":5, 
     expires:"762376762357276", (Timestamp)
-    "code":'hx5663fdg3' 
+    "code":'hx5663fdg3'
+    "Aktionsname": 'Versandkostenfrei (DE)' 
 }
 
 _____________________________________

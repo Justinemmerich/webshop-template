@@ -411,10 +411,10 @@
 }
 /* product */
 .arrow-left-right .slick-arrow {
-  left: 0px;
+  left: 15px;
 }
 .arrow-left-right .slick-next.slick-arrow {
-  right: 15px;
+  right: 25px;
 } 
 .section-title h2 {
   font-size: 22px;

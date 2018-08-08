@@ -34,8 +34,94 @@
 
 -----------------------------------------------------------------------------------*/
 
+/* ------------------------------*/
+/*            Font Import 
+/* ------------------------------*/
+
+@font-face {
+  font-family: 'COOKIE';
+  src: 
+       url('/fonts/Cookie-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/Cookie-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+  
+  @font-face { 
+  font-family: "ITALIANBREAKFAST"; 
+  src: url("../fonts/ItalianBreakfast-Regular.ttf") format('truetype');
+  }
+  
+  @font-face { 
+  font-family: "MOLLE"; 
+  src: url("../fonts/Molle-Regular.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "OCTOBERTWILIGHT"; 
+  src: url("../fonts/October\ Twilight.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "PECITA"; 
+  src: url("../fonts/pecita.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "SARINA"; 
+  src: url("../fonts/Sarina-Regular.ttf") format('truetype'); 
+  }
+
+
+
 /* Imports */
 @import url('https://fonts.googleapis.com/css?family=Kalam|Raleway');
+
+.language-selection-div{
+  margin-right:20px;
+}
+
+.language-selection-div select{
+  width:130%;
+}
+
+.individual-text {
+  left: 0px;
+  position: relative;
+  width: 40% !important;
+  font-family: COOKIE;
+  z-index: 20;
+  height: 50px !important;
+}
+
+.individual-text:required:invalid {
+  border: 1px solid #c87065;
+}
+
+.individual-text:hover {
+  transform: scale(1.15); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  font-size: 2em;
+  height: 70px;
+  line-height: 70px;
+}
+
+
+
+/*--------------*/
+
+.language-selection-list{
+  padding: 30px 0;
+}
+
+.language-selection-div {
+  width: 50px;
+}
+
+.language-selection-div select {
+  border: none !important;
+  box-shadow: none;
+  -webkit-transition: none;
+  transition: none;
+}
+
 
 /*----------------------------------------*/
 /*  1.  Theme default CSS
@@ -55,7 +141,7 @@ img {max-width:100%;height:auto}
 }
 
 .modal {
-  z-index: 999999999 !important;
+  z-index: 12147483647 !important;
 }
 
 .centered {
@@ -154,6 +240,7 @@ body {
   padding-left: 30px;
   position: relative;
   right: 0;
+  top: 5px;
 }
 .cart-icon i {
   font-size: 25px;
@@ -405,7 +492,7 @@ body {
 	background: #EEEEEE none repeat scroll 0 0;
 	position: fixed;
 	width: 100%;
-	z-index: 99999;
+	z-index: 99;
 }
 .sticky .open-menu, .sticky .logo, .sticky .cart-icon {
     line-height: 80px;
@@ -1392,7 +1479,7 @@ span.color.color-7 { background: #C38B4B; }
   float: left;
   margin: 0 0 0 20px;
   /* width: 230px; */
-  width: 45%;
+  width: 60%;
 }
 .shop-list .product-description  p {
   font-weight: 400;
@@ -1495,6 +1582,9 @@ input.cart-plus-minus-box {
   opacity: 0.5;
 }
 
+.single-product .fix {
+  height: 60px;
+}
 
 .single-pro-area .single-product:hover {
   box-shadow: none;
@@ -1822,7 +1912,7 @@ input.cart-plus-minus-box {
 .payment-details table td{
   color: #999;
   font-weight: 700;
-  padding: 7px 30px;
+  padding: 7px 10px;
 }
 .payment-details table tr {
   border-bottom: 1px solid #E5E5E5;
@@ -2156,6 +2246,14 @@ input.cart-plus-minus-box {
   padding-top: 50px;
 }
 
+@media only screen and (max-width: 768px) {
+  .individual-text:hover {
+    transform: scale(1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    font-size: 2em;
+    height: 70px;
+    line-height: 70px;
+  }
+}
 
 @media screen and (max-width: 992px) {
   .table-content table {
@@ -2255,5 +2353,10 @@ input.cart-plus-minus-box {
 
 }
 
-
+.fontGalleryPreview{
+  text-align: center;
+  z-index: 99999999999999999;
+  font-size: 2.7em;
+  color: white;
+}
 

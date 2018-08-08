@@ -1,0 +1,126 @@
+{
+   "category":"category",
+   "collapse": "collapse",
+   "expand":"expand",
+   "productsearch": "search",
+   "productdetails":"show details",
+   "showing":"showing",
+   "oftotal":"of",
+   "items" : "items",
+   "footer-contact" : "contact :",
+    "footer-address": "adress :",
+    "footer-telefon": "phone :",
+    "footer-mail": "mail :",
+    "footer-middle-headline": "security & privacy",
+    "footer-imprint": "imprint",
+    "footer-dataprivacy": "dataprivacy",
+    "footer-terms": "terms & conditions",
+    "cart-link": "go to cart",
+    "cart-item" : "item",
+    "you-have": "you have",
+    "in-cart": "in cart",
+    "you have $1 {{plural:$1|item|items}} in your shopping bag":  "you have $1 {{plural:$1|item|items}} in cart",
+    "cart-price-label":"price:",
+    "cart-quantity-label":"qty.:",
+
+    "singleproduct-tooverview": "to Overview",
+    "singleproduct-individualisation-title": "individalisation",
+    "singleproduct-decor-title": "decor",
+    "singleproduct-fontpreview-title": "font preview",
+    "singleproduct-preview-title": "preview",
+    "singleproduct-changefont": "change font",
+    "singleproduct-addtocart":" add to cart",
+    "singleproduct-description-title": "description",
+    "singleproduct-information-title": "information",
+    "singleproduct-productinformation-title": "productinformation",
+
+    "singleproduct-modal-idividualisation-title": "product needs individualisation",
+    "singleproduct-modal-idividualisation-text": "The choosen product needs individual text. Please fill all marked field, if possible you need to choose a font.",
+    "singleproduct-modal-idividualisation-thanks":"thanks!",
+    "singleproduct-modal-idividualisation-close":"close",
+
+    "cartpage-toshop": "to Shop",
+    "cartpage-cart-title": "cart",
+    "cartpage-gift-title":"options",
+    "cartpage-adress-title": "address",
+    "cartpage-overview-title": "overview",
+
+    "cartpage-table-title-item":"item",
+    "cartpage-table-title-priceperpiece":"price per piece",
+    "cartpage-table-title-quantities":"quantity",
+    "cartpage-table-title-total":"total",
+    "cartpage-table-title-delete":"delete",
+
+    "cartpage-couponarea-title":"Coupon & Discount",
+    "cartpage-couponarea-description":"enter your coupone here!",
+    "cartpage-couponarea-button":"redeem coupon",
+
+    "cartpage-sumup-totalcart":"cart total",
+    "cartpage-sumup-discount":"discount",
+    "cartpage-sumup-likelyshippingcosts":"exp. shipping costs (DE)",
+    "cartpage-sumup-total":"total",
+    "cartpage-sumup-shippinginfo":"you can find information about our shipping costs here!",
+    "cartpage-sumup-shippinginfo-link":"calculation of shipping costs",
+    "cartpage-tocheckout-button":"to checkout",
+
+    "optionspage-sumup-giftoptions": "gift options",
+    "optionpage-button-ordernow":"order now",
+    "optionpage-giftcard":"giftcard",
+    "optionpage-wrappingpaper":"wrapping paper",
+
+    "checkoutpage-tooptions":"to options",
+    "checkoutpage-billingdetails":"billingdetails",
+    
+    "checkoutpage-shippingdetails":"shippingdetails",
+    "checkoutpage-alternativedeliveryaddress":"alternative shipping address",
+
+    "checkoutpage-paymentmethod-title":"payment method",
+    "checkoutpage-paymentmethod-inadvance":"Payment in advance",
+    "checkoutpage-paymentmethod-inadvance-2":"no extra fees.",
+    "checkoutpage-paymentmethod-inadvance-3":"The payment will be transferred in advance from you to our account.",
+    "checkoutpage-paymentmethod-inadvance-4":"The articles will be prepared for shipping after the receipt of the money!",
+
+    "checkoutpage-paymentmethod-debit":"debit",
+    "checkoutpage-paymentmethod-debit-2":"no extra fees.",
+    "checkoutpage-paymentmethod-debit-3":"the amount will be charged automatically from your debitcard. The articles will be prepared for shipping directly.",
+    "checkoutpage-paymentmethod-debit-4":"payment method debit card is limited to german cards!",
+
+    "checkoutpage-paymentmethod-creditcard":"creditcard",
+    "checkoutpage-paymentmethod-creditcard-2":"fast and easy payment with Mastercard or Visa.",
+    "checkoutpage-paymentmethod-creditcard-3":"The articles will be prepared for shipping directly.",
+
+    "checkoutpage-paymentmethod-paypal":"PayPal",
+    "checkoutpage-paymentmethod-paypal-2":"fast and easy payment with your paypal account.",
+    "checkoutpage-paymentmethod-paypal-3":"The articles will be prepared for shipping directly.",
+    "checkoutpage-paymentmethod-paypal-4":"this method needs an active paypal account!",
+
+    "checkoutpage-tooverview":"to overview",
+
+    "ordercompletepage-toaddress":"to Address",
+
+    "ordercompletepage-ordernumber":"order no.",
+    "ordercompletepage-date":"date",
+    "ordercompletepage-sum":"total",
+    "ordercompletepage-paymentmethod":"payment method",
+
+    "ordercompletepage-yourorder":"your order",
+    "ordercompletepage-table-items":"item",
+    "ordercompletepage-table-quantity":"quantity",
+    "ordercompletepage-table-total":"total",
+
+    "ordercompletepage-adressdata":"address",
+
+    "ordercompletepage-creditcarddetails":"creditcard details",
+    "ordercompletepage-debitdetails":"debit details",
+    "ordercompletepage-paypalpaymentnote":"paypal note",
+    "ordercompletepage-paypalinformation":"you will be forwarded for billing to paypal.com after placing your order.",
+
+    "ordercompletepage-paymentinadvancenote":"payment in advance note",
+    "ordercompletepage-paymentinadvanceinformation":"our account data will be handed to you after placing your order.",
+
+    "ordercompletepage-dataprivacyinformation":"I have read and understood the Privacy Policy and Terms and Conditions and accept them.",
+
+    "ordercompletepage-ordernow":"place your order"
+
+    
+}

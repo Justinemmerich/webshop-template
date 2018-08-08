@@ -34,6 +34,44 @@
 
 -----------------------------------------------------------------------------------*/
 
+/* ------------------------------*/
+/*            Font Import 
+/* ------------------------------*/
+
+@font-face {
+  font-family: 'COOKIE';
+  src: 
+       url('/fonts/Cookie-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/Cookie-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+  
+  @font-face { 
+  font-family: "ITALIANBREAKFAST"; 
+  src: url("../fonts/ItalianBreakfast-Regular.ttf") format('truetype');
+  }
+  
+  @font-face { 
+  font-family: "MOLLE"; 
+  src: url("../fonts/Molle-Regular.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "OCTOBERTWILIGHT"; 
+  src: url("../fonts/October\ Twilight.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "PECITA"; 
+  src: url("../fonts/pecita.ttf") format('truetype'); 
+  }
+  
+  @font-face { 
+  font-family: "SARINA"; 
+  src: url("../fonts/Sarina-Regular.ttf") format('truetype'); 
+  }
+
+
+
 /*----------------------------------------*/
 /*  1.  Theme default CSS
 /*----------------------------------------*/
@@ -595,7 +633,7 @@ button[disabled] {
   margin-bottom: 15px;
   transition: all 0.5s ease 0s;
 }
-.product-img {position: relative;}
+.product-img {position: relative; overflow: hidden !important;}
 .product-img img { width: 100%;}
 .product-action {
   background: #fff none repeat scroll 0 0;
@@ -1607,6 +1645,20 @@ input.cart-plus-minus-box {
   color: #ccc;
   margin: 0 15px;
 }
+
+/* ----------------------------
+ FONT GALERY 
+------------------------------*/
+
+.fontGalleryPreview {
+  color: #000;
+  font-size: 2em;
+  z-index: 9999999999999999999999999999999999999999999999999999999999999999999999;
+  text-align: center !important;
+}
+
+
+
 /* ---------------------------------
 	14. Shopping-cart 
 ----------------------------------- */
@@ -2019,11 +2071,4 @@ input.cart-plus-minus-box {
   line-height: 14px;
   padding: 30px 0;
 }
-
-
-
-
-
-
-
 

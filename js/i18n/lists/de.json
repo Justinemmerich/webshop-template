@@ -1,0 +1,132 @@
+{
+    "category":"Kategorie",
+    "collapse": "einklappen",
+    "expand":"ausklappen",
+    "productsearch": "Produktsuche",
+    "productdetails":"Details zum Produkt",
+    "showing":"zeige",
+    "oftotal":"von gesamt",
+    "items" : "Artikeln",
+
+    "footer-contact" : "Kontakt :",
+    "footer-address": "Adresse :",
+    "footer-telefon": "Telefon :",
+    "footer-mail": "E-mail :",
+    "footer-middle-headline": "Rechtliches",
+    "footer-imprint": "Impressum",
+    "footer-dataprivacy": "Datenschutz",
+    "footer-terms": "Allgemeine Geschäftsbedingungen",
+
+    "cart-link": "zum Warenkorb",
+    "cart-item" : "Artikel",
+    "you-have": "Du hast",
+    "in-cart": "im Warenkorb",
+    "you have $1 {{plural:$1|item|items}} in your shopping bag":  "Du hast $1 {{plural:$1|Artikel|Artikel}} im Warenkorb",
+    "cart-price-label":"Preis:",
+    "cart-quantity-label":"Stück:",
+
+    "singleproduct-tooverview": "zur Übersicht",
+    "singleproduct-individualisation-title": "Individualisierung",
+    "singleproduct-decor-title": "Dekor",
+    "singleproduct-fontpreview-title": "Schriftart Vorschau",
+    "singleproduct-preview-title": "Vorschau",
+    "singleproduct-changefont": "Schriftart ändern",
+    "singleproduct-addtocart":" in den Warenkorb",
+    "singleproduct-description-title": "Beschreibung",
+    "singleproduct-information-title": "Informationen",
+    "singleproduct-productinformation-title": "Produktinformationen",
+
+    "singleproduct-modal-idividualisation-title": "Produkt benötigt Individualisierung",
+    "singleproduct-modal-idividualisation-text": "Das von Dir gewählte Produkt benötigt eine Individualisierung. Bitte fülle alle rot markierten Feld aus und wähle falls möglich eine Schriftart aus.",
+    "singleproduct-modal-idividualisation-thanks":"Vielen Dank!",
+    "singleproduct-modal-idividualisation-close":"Schließen",
+
+    "cartpage-toshop": "zum Shop",
+    "cartpage-cart-title": "Warenkorb",
+    "cartpage-gift-title":"Geschenkoption",
+    "cartpage-adress-title": "Adressdaten",
+    "cartpage-overview-title": "Übersicht",
+
+    "cartpage-table-title-item":"Artikel",
+    "cartpage-table-title-priceperpiece":"Stückpreis",
+    "cartpage-table-title-quantities":"Anzahl",
+    "cartpage-table-title-total":"Gesamt",
+    "cartpage-table-title-delete":"löschen",
+
+    "cartpage-couponarea-title":"Gutschein & Rabatt",
+    "cartpage-couponarea-description":"Tragen Sie Ihren vorhandenen Gutscheincode hier ein!",
+    "cartpage-couponarea-button":"Code einlösen",
+
+    "cartpage-sumup-totalcart":"Warenkorb Gesamt",
+    "cartpage-sumup-discount":"Rabatt",
+    "cartpage-sumup-likelyshippingcosts":"vsl. Versandkosten (DE)",
+    "cartpage-sumup-total":"Gesamt",
+    "cartpage-sumup-shippinginfo":"Versandkosten. Informationen findest Du hier!",
+    "cartpage-sumup-shippinginfo-link":"Berechnung der Versandkosten",
+    "cartpage-tocheckout-button":"zum Checkout",
+
+    "optionspage-sumup-giftoptions": "Geschenkoptionen",
+    "optionpage-button-ordernow":"jetzt Bestellen",
+    "optionpage-giftcard":"Grußkarte",
+    "optionpage-wrappingpaper":"Geschenkverpackung",
+
+    "checkoutpage-tooptions":"zur Geschenkoption",
+    "checkoutpage-billingdetails":"Rechnungsdetails",
+    
+    "checkoutpage-shippingdetails":"Lieferanschrift",
+    "checkoutpage-alternativedeliveryaddress":"abweichende Lieferanschrift",
+
+    "checkoutpage-paymentmethod-title":"Bezahlmethode",
+
+    "checkoutpage-paymentmethod-inadvance":"Vorkasse",
+    "checkoutpage-paymentmethod-inadvance-2":"Keine zusätzlichen Gebühren.",
+    "checkoutpage-paymentmethod-inadvance-3":"Die Bezahlung wird im Vorraus von Dir auf das ausgewiesene Konto transferiert.",
+    "checkoutpage-paymentmethod-inadvance-4":"Die Artikel werden erst nach dem Geldeingang für den Versand vorbereitet!",
+
+    "checkoutpage-paymentmethod-debit":"Bankeinzug",
+    "checkoutpage-paymentmethod-debit-2":"Keine zusätzlichen Gebühren.",
+    "checkoutpage-paymentmethod-debit-3":"Der Rechnungsbetrag wird automatisch von deinem Konto eingezogen. Die Artikel werden sofort für den Versand vorbereitet.",
+    "checkoutpage-paymentmethod-debit-4":"Zurzeit ist die Zahlung per Bankeinzug nur in Deutschland möglich!",
+
+    "checkoutpage-paymentmethod-creditcard":"Kreditkarte",
+    "checkoutpage-paymentmethod-creditcard-2":"Einfache und schnelle Bezahlung per Mastercard und Visa.",
+    "checkoutpage-paymentmethod-creditcard-3":"Deine Artikel werden sofort für den Versand vorbereitet.",
+
+    "checkoutpage-paymentmethod-paypal":"PayPal",
+    "checkoutpage-paymentmethod-paypal-2":"Schnell und einfach per Paypal bezahlen.",
+    "checkoutpage-paymentmethod-paypal-3":"Die Artikel werden sofort für den Versand vorbereitet.",
+    "checkoutpage-paymentmethod-paypal-4":"Es wird ein aktives Paypal-Kundenkonto benötigt!",
+
+    "checkoutpage-tooverview":"zur Bestellübersicht",
+
+    "ordercompletepage-toaddress":"zu den Adressdaten",
+
+
+    "ordercompletepage-ordernumber":"Bestellnummer",
+    "ordercompletepage-date":"datum",
+    "ordercompletepage-sum":"Betrag",
+    "ordercompletepage-paymentmethod":"Bezahlmethode",
+
+    "ordercompletepage-yourorder":"Deine Bestellung",
+    "ordercompletepage-table-items":"Artikel",
+    "ordercompletepage-table-quantity":"Menge",
+    "ordercompletepage-table-total":"Gesamt",
+
+    "ordercompletepage-adressdata":"Adressdaten",
+
+    "ordercompletepage-creditcarddetails":"Kreditkarten details",
+    "ordercompletepage-debitdetails":"Bankeinzug details",
+    "ordercompletepage-paypalpaymentnote":"Paypal Zahlungshinweis",
+    "ordercompletepage-paypalinformation":"Sie werden nach mit dem absenden der Bestellung auf Paypal weitergeleitet",
+
+    "ordercompletepage-paymentinadvancenote":"Vorkasse Zahlungshinweis",
+    "ordercompletepage-paymentinadvanceinformation":"Unsere Zahlungsdaten werden Ihnen nach dem absenden der Bestellung bereitgestellt.",
+
+    "ordercompletepage-dataprivacyinformation":"Ich habe die Datenschutzbestimmungen und die Allgemeinen Geschäftsbedingungen gelesen und verstanden, und akzeptiere diese ausdrücklich.",
+
+    "ordercompletepage-ordernow":"Jetzt kostenpflichtig Bestellen"
+
+
+
+
+ }

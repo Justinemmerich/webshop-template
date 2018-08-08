@@ -1,5 +1,5 @@
 var has_divergent_shippingadress = false;
-var payment_method = 'payment_in_advice'; // set default payment methode here
+var payment_method = 'payment_in_advance'; // set default payment methode here
 
 function initCheckout(){
     restorefromCookie();

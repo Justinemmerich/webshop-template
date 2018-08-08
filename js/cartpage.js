@@ -1,5 +1,6 @@
 var coupon;
-var shipping = 6.00;
+var discount = 0.00;
+var shipping = 5.99;
 var minCouponValue;
 var selectedoptionindexfordelete = 0;
 var selectedoptionidfordelete = null;
@@ -19,12 +20,19 @@ function initCartPage(){
 
 };
 
+function loadShippingCosts(country){
+    //todo Api call here
+    return shipping;
+}
+
 function renderShoppingCartItems(){
 
 
 
     // reset cart and values
     document.getElementsByClassName('shop-cart-table')[0].querySelector('tbody').innerHTML = '';
+
+    var shippingcosts = loadShippingCosts('Deutschland');
 
     var total = 0;
  
@@ -33,7 +41,13 @@ function renderShoppingCartItems(){
 
         total = total + (cart[i].price * cart[i].quantity);
 
+
         var display_individualisation = cart[i].hasIndividualisation === false ?  'none': 'block';
+
+        var individualisationwrapper = '';
+        for (var k = 0; k < cart[i].individualisation.length; k++){
+            individualisationwrapper+= '<p style="display:'+display_individualisation+'; font-family: '+cart[i].individualisation[k].font+'; font-size: 1.1em;">'+cart[i].individualisation[k].value+'</p>';
+        }
 
         var tr = document.createElement('tr');
         tr.className = "single-cart";
@@ -44,7 +58,8 @@ function renderShoppingCartItems(){
                         </div>\
                         <div class="product-info product-info-table">\
                         <h4 class="post-title"><a class="text-light-black" href="#">'+ cart[i].productname +'</a></h4>\
-                        <p style="display:'+display_individualisation+'" class="mb-0">indiv. : '+ cart[i].individualisation +' </p>\
+                        <p style="display:'+display_individualisation+'; class="mt-20">'+ individualisationwrapper +' </p>\
+                        <img style="display:'+display_individualisation+'; height:25px; width: 100%" src="'+cart[i].decorImage+'">\
                         </div>\
                         </div>										\
                         </td>\
@@ -62,19 +77,39 @@ function renderShoppingCartItems(){
 
     } // End for-loop
 
-    var total_with_coupon = (parseFloat(total) < parseFloat(coupon.amount)) ? parseFloat(0) : ((parseFloat(total) - parseFloat(coupon.amount)));
-
-    document.getElementById('payment_cart').innerHTML = total.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +'€';
-    document.getElementById('payment_coupon').innerHTML = coupon.amount.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +'€';
-    document.getElementById('payment_total').innerHTML = total_with_coupon.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +'€';
-
-    // if has coupon -> display coupon code
-    if (coupon.valid === true){
-        document.getElementById('payment_coupon_text').innerHTML = 'Rabatt ('+coupon.code+')';
+    //calculate discount
+    var total_with_coupon = 0;
+     // if has coupon -> display coupon code
+     if (coupon.valid === true){
+        switch (coupon.operation){
+            case 'percent': 
+            console.log('coupon operator %')
+            discount = parseFloat((total/100) * coupon.amount).toFixed(2);
+            console.log('coupon  discount',  discount)
+            total_with_coupon = parseFloat(total) - parseFloat(discount).toFixed(2);
+            break;
+            case 'minus': 
+            console.log('coupon operator -')
+            discount = parseFloat(coupon.amount).toFixed(2);
+            console.log('coupon  discount',  discount)
+            total_with_coupon = (parseFloat(total) < discount) ? parseFloat(total) : ((parseFloat(total) - discount));
+            break;
+            default:
+            console.log('coupon operator not set')
+            discount = parseFloat(0);
+            total_with_coupon = parseFloat(total);
+            break;
+        }
+        document.getElementById('payment_coupon_text').innerHTML = coupon.action+' '+'('+coupon.code+')';
     }
+    var total_with_shipping = parseFloat(total_with_coupon) + parseFloat(shippingcosts);
 
-    //TODO put coupon.code in input field 
-    
+    document.getElementById('payment_cart').innerHTML = total.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_coupon').innerHTML = discount.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_shipping').innerHTML = shippingcosts.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_total').innerHTML = total_with_shipping.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+
+   
 }
 
 function addCoupon(element){
@@ -83,7 +118,38 @@ function addCoupon(element){
 
     //TODO Send validation to server
     // res = coupon
-    coupon = {"valid":true, "amount":5, expires:"762376762357276", "code":'hx5663fdg3'};
+
+    // $.ajax({
+    //       'url' : 'http://www.wooderino.de/api.php',
+    //       'type' : 'GET',
+    //       'contentType':'application/json',
+    //       'data' : {
+    //         'list' : 'codecheck',
+    //         'code' : coupon_code
+    //       },
+    //       "success": function(res){ 
+    //           coupon = res;
+    //         if (coupon.valid === true){
+    //             console.log('coupon valid')
+    //             // set input style
+    //             element.parentElement.querySelector('input').style = "border: 2px solid #acc050;";
+    //              //update cookie
+    //             setCookie('coupon', JSON.stringify(coupon), 365);
+        
+    //              //update Cart on page 
+    //             renderShoppingCartItems();
+    //         }else{
+    //             element.parentElement.querySelector('input').style = "border: 2px solid #c87065;";
+    //         }
+    //         },
+    //         "error": function(XMLHttpRequest, textStatus, errorThrown) { 
+    //             alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    //         }
+    //     });
+
+       
+     //coupon = {"valid":true, "operation":"minus", "amount":10, expires:"762376762357276", "code":'hx5663fdg3', action:"Aktion - Keine Versandkosten"};
+     coupon = {"valid":true, "operation":"percent", "amount":10, expires:"762376762357276", "code":'gx63vst53g', action:"Aktion - 10%"};
 
     if (coupon.valid){
         // set input style
@@ -92,7 +158,7 @@ function addCoupon(element){
         setCookie('coupon', JSON.stringify(coupon), 365);
 
          //update Cart on page 
-        renderShoppingCartItems()
+        renderShoppingCartItems();
     }else{
         element.parentElement.querySelector('input').style = "border: 2px solid #c87065;";
     }
@@ -204,7 +270,7 @@ function removeQuantity(element) {
                             var packing = options[k].options[z].packing == true? 'img/packing-yes.png': 'img/packing-no.png';
                             var card = options[k].options[z].card == true? 'visible':'hidden';
                             var text = options[k].options[z].card == true? (options[k].options[z].cardoptions.text === null || options[k].options[z].cardoptions.text === '' ? '- Kein Text hinterlegt -':options[k].options[z].cardoptions.text): '';
-                        
+                          
                             var row = document.createElement('div');
                             row.className = "row mt-10 mb-10";
                             row.innerHTML = '<div  class="mr-15 ml-15" style="border-bottom: 1px solid black; display: flex;">\

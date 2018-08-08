@@ -73,20 +73,40 @@
   position: absolute;
   top: 20px;
   z-index: 2;
-  background: #c8a165 none repeat scroll 0 0;
+  width         : 0;
+  height        : 0;
+  border-left   : 80px solid transparent;
+  border-right  : 80px solid transparent;  
+  border-bottom : 80px solid #c87065;
+  /* background: #c8a165 none repeat scroll 0 0;
   border-radius: 5px;
   color: #fff;
   height: 25px;
+  width: 150px;
   line-height: 25px;
   padding: 0 10px;
-  text-transform: capitalize;
+  text-transform: capitalize;*/
+  transform: translate( -71px, -31px) rotate(-45deg); 
+  text-align: center;
 }
 .pro-label.new-label {
-  background: #c8a165 none repeat scroll 0 0;
+  background: transparent;
 }
 .pro-label.sale-label {
   background: #c87065 none repeat scroll 0 0;
 }
+.text-label{
+  text-transform: capitalize;
+  font-size: 1.5em;
+  color: white;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 75%;
+  transform: translate(-50%, 220%);
+}
+
 .single-banner .pro-label {
   left: 30px;
 }

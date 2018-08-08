@@ -66,7 +66,7 @@ function renderCategoriePage () {
     var div = document.createElement('div');
     div.className = "col-lg-3 col-md-4 col-sm-4 col-xs-12";
     div.style.opacity = 0;
-    div.innerHTML = '   <div class="single-product" data-filter="'+categories[i].filter+'">\
+    div.innerHTML = '   <div class="single-product categorie-slide" data-filter="'+categories[i].filter+'">\
                         <div class="product-info clearfix text-center">\
                         <div class="fix">\
                         <h4 class="post-title"><a onclick="setCategorieFilter(this)">'+categories[i].name+'</a></h4>\

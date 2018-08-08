@@ -124,9 +124,17 @@
 										</div>
 									</div>
 									<div class="col-sm-4 col-xs-5">
-										<div class="mini-cart text-right" style="display: none">
+										<div class="mini-cart text-right">
 											<ul>
-												<li>
+													<li class="language-selection-list">
+															<div class="language-selection-div">
+																	<select class="form-control language-selection" >
+																	  <option value="de">DE</option>
+																	  <option value="en">EN</option>
+																	</select>
+																  </div>
+													</li>
+												<li style="display: none">
 													<a class="cart-icon" href="#">
 														<i class="zmdi zmdi-shopping-cart"></i>
 														<span>0</span>
@@ -322,10 +330,10 @@
 							<div class="shopping-cart">
 								<!-- Nav tabs -->
 								<ul class="cart-page-menu row clearfix mb-30">
-									<li><a href="cart.html">Warenkorb</a></li>
-									<li class="active" ><a >Geschenkoption</a></li>
-									<li><a href="checkout.html" >Adressdaten</a></li>
-									<li><a >Übersicht</a></li>
+									<li><a href="cart.html" data-i18n="cartpage-cart-title">Warenkorb</a></li>
+									<li class="active"><a data-i18n="cartpage-gift-title">Geschenkoption</a></li>
+									<li><a href="checkout.html" data-i18n="cartpage-adress-title">Adressdaten</a></li>
+									<li><a data-i18n="cartpage-overview-title">Übersicht</a></li>
 								</ul>
 
 								<!-- Tab panes -->
@@ -337,11 +345,11 @@
 													<table>
 														<thead>
 															<tr>
-																<th class="product-thumbnail">Artikel</th>
+																<th class="product-thumbnail" data-i18n="cartpage-table-title-item">Artikel</th>
 																<th class="product-price"></th>
 																<th class="product-quantity"></th>
-																<th class="product-subtotal">Grußkarte (2.99€)</th>
-																<th class="product-remove">Geschenkvepackung (0.99€)</th>
+																<th class="product-subtotal"><span data-i18n="optionpage-giftcard">Grußkarte</span><span>(2.99€)</span></th>
+																<th class="product-remove"><span data-i18n="optionpage-wrappingpaper">Geschenkvepackung</span><span>(0.99€)</span></th>
 															</tr>
 														</thead>
 														<tbody>
@@ -434,31 +442,31 @@
 														<table>
 															<tbody>
 																<tr>
-																	<td class="text-left">Warenkorb Gesamt</td>
+																	<td class="text-left" data-i18n="cartpage-sumup-totalcart">Warenkorb Gesamt</td>
 																	<td id="payment_cart" class="text-right">$155.00</td>
 																</tr>
 																<tr>
-																	<td id="payment_coupon_text" class="text-left">Geschenkoptionen</td>
+																	<td id="payment_coupon_text" class="text-left" data-i18n="optionspage-sumup-giftoptions">Geschenkoptionen</td>
 																	<td id="payment_giftoption" class="text-right">$00.00</td>
 																</tr>
 																<tr>
-																		<td id="payment_coupon_text" class="text-left">Rabatt</td>
+																		<td id="payment_coupon_text" class="text-left" data-i18n="cartpage-sumup-discount">Rabatt</td>
 																		<td id="payment_coupon" class="text-right">$00.00</td>
 																	</tr>
 																<tr>
-																	<td class="text-left">Gesamt</td>
+																	<td class="text-left" data-i18n="cartpage-sumup-total">Gesamt</td>
 																	<td id="payment_total" class="text-right">$170.00</td>
 																</tr>
 															</tbody>
 														</table>
-														<p class="text-gray" style="padding: 20px 30px">zzgl. Versandkosten. Informationen findest Du hier <a href="">Berechnung der Versandkosten</a></p>
+														<p class="text-gray" style="padding: 20px 30px" ><span data-i18n="cartpage-sumup-shippinginfo">zzgl. Versandkosten. Informationen findest Du hier </span> <a href="" data-i18n="cartpage-sumup-shippinginfo-link">Berechnung der Versandkosten</a></p>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="customer-login mt-30">
-														<a href="checkout.html" data-text="jetzt bestellen" class="button-one submit-button next-button mt-15">jetzt bestellen</a>
+														<a href="checkout.html" data-text="jetzt bestellen" class="button-one submit-button next-button mt-15" data-i18n="optionpage-button-ordernow">jetzt bestellen</a>
 													</div>											
 												</div>
 											</div>
@@ -993,6 +1001,14 @@
 		<script src="js/loader.js"></script>
 		<script src="js/animation.js"></script>
 		<script src="js/velocity.min.js"></script>
+
+		<script src="js/i18n/jquery.i18n.js"></script>
+		<script src="js/i18n/jquery.i18n.messagestore.js"></script>
+		<script src="js/i18n/jquery.i18n.fallbacks.js"></script>
+		<script src="js/i18n/jquery.i18n.parser.js"></script>
+		<script src="js/i18n/jquery.i18n.emitter.js"></script>
+		<script src="js/i18n/jquery.i18n.language.js"></script>
+		<script src="js/i18n/i18n.js"></script>
 
 		<script>
 					initCart();

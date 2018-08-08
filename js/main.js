@@ -124,17 +124,20 @@
 	sticky-menu
 --------------------- */ 
     var sticky_menu = $("#sticky-menu");
-    var pos = sticky_menu.position();
+	var pos = sticky_menu.position();
     if (sticky_menu.length) {
         var windowpos = sticky_menu.offset().top;
         $(window).on('scroll', function() {
+			// console.log('sticky pos', pos);
+			// console.log('sticky_menu.length', sticky_menu.length);
+			// console.log('$(window).scrollTop()', $(window).scrollTop());
             var windowpos = $(window).scrollTop();
             if (windowpos > pos.top) {
                 sticky_menu.addClass("sticky");
             } else {
                 sticky_menu.removeClass("sticky");
             }
-        });
+		});
     }
 
 /*--------------------------
@@ -232,7 +235,8 @@
 		easingType: 'linear',
 		scrollSpeed: 900,
 		animation: 'fade'
-	}); 	   
+	});
+
 
 /*--------------------------	
 	shop page manu dropdown	

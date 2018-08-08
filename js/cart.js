@@ -1,3 +1,7 @@
+document.write(
+    unescape("%3Cscript src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js' type='text/javascript'%3E%3C/script%3E")
+  );
+
 
 var cart = [];
 var total_items = 0;
@@ -80,6 +84,12 @@ function loadShoppingCart() {
 
         var display_individualisation = cart[i].hasIndividualisation === false ?  'none': 'block';
 
+        var individualisationwrapper = '';
+        for (var k = 0; k < cart[i].individualisation.length; k++){
+            individualisationwrapper+= '<p style="display:'+display_individualisation+'; font-family: '+cart[i].individualisation[k].font+'; font-size: 1.1em;">'+cart[i].individualisation[k].value+'</p>';
+        }
+       
+
         var div = document.createElement('div');
         div.className = "single-cart clearfix";
         div.innerHTML = '<div class="single-cart clearfix">\
@@ -88,11 +98,12 @@ function loadShoppingCart() {
                         </div>\
                         <div class="cart-info">\
                         <h5><a href="#">'+ cart[i].productname +'</a></h5>\
-                        <p class="mb-0">Preis : '+ cart[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</p>\
-                        <p class="mb-0">Stück : '+ cart[i].quantity +' </p>\
-                        <p style="display:'+display_individualisation+'" class="mb-0">indiv. : '+ cart[i].individualisation +' </p>\
                         <p class="mb-0">#'+ cart[i].itemId +' </p>\
+                        <p class="mb-0"><span data-i18n="cart-price-label">Preis:</span> '+ cart[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</p>\
+                        <p class="mb-0"><span data-i18n="cart-quantity-label">Stück:</span> '+ cart[i].quantity +' </p>\
+                        <p style="display:'+display_individualisation+'; class="mt-20">'+ individualisationwrapper +' </p>\
                         <span data-cartItemId="'+cart[i].cartItemId +'" onclick="removeItemfromCart(this)" class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>\
+                        <img style="display:'+display_individualisation+'; height:25px; width: 100%" src="'+cart[i].decorImage+'">\
                         </div>\
                         </div>'
         document.getElementsByClassName('all-cart-product')[0].appendChild(div);
@@ -103,8 +114,8 @@ function loadShoppingCart() {
         document.getElementsByClassName('cart-icon')[0].querySelector('span').innerHTML = total_items;
 
         //set number in detail hover view
-        document.getElementsByClassName('cart-items')[0].querySelector('span').innerHTML = total_items + ' Artikel';
-
+        document.getElementsByClassName('cart-items')[0].querySelector('p').innerHTML =   $.i18n( 'you have $1 {{plural:$1|item|items}} in your shopping bag', total_items );
+    
         // render total price
         document.getElementsByClassName('cart-totals')[0].querySelector('span').innerHTML = total.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) + ' €';
 
@@ -120,17 +131,22 @@ function loadShoppingCart() {
     
 }
 
-function addItemtoShoppingCart(_itemId, _image, _productname, _price, _quantity, _hasIndividualisation, _individualisation) {
+function addItemtoShoppingCart(_itemId, _image, _productname, _price, _quantity, _hasIndividualisation, _individualisation, _font, _decorImage, _decorId) {
     console.log('cart length', cart.length)
-    console.log('add Item', _itemId, _image, _productname, _price, _quantity, _hasIndividualisation, _individualisation)
+    console.log('add Item', _itemId, _image, _productname, _price, _quantity, _hasIndividualisation, _individualisation, _font, _decorImage, _decorId);
 
     var alreadyincart = false;
     var item_cart_index = null;
     
     //check if item already exist in shoppingcard
+    //todo add multi individualisation Undersocre-Library _.isEqual(a, b)
     for (var p = 0; p< cart.length; p++){
-        if (cart[p].itemId === _itemId && cart[p].individualisation === _individualisation){
-            console.log('add quantity')
+        if (cart[p].itemId === _itemId 
+            && _.isEqual(cart[p].individualisation,_individualisation)
+            && cart[p].font === _font 
+            && cart[p].decorImage === _decorImage 
+            && cart[p].decorId === _decorId ){
+            console.log('add quantity');
             alreadyincart = true;
             item_cart_index = p;
         }
@@ -152,6 +168,9 @@ function addItemtoShoppingCart(_itemId, _image, _productname, _price, _quantity,
                 quantity: parseInt(_quantity),
                 hasIndividualisation:_hasIndividualisation,
                 individualisation: _individualisation,
+                font: _font,
+                decorImage: _decorImage,
+                decorId: _decorId,
             }
 
             //update shopping cart
@@ -163,7 +182,7 @@ function addItemtoShoppingCart(_itemId, _image, _productname, _price, _quantity,
     }
 
     // reload shopping cart
-    loadShoppingCart()
+    loadShoppingCart();
 
     //update cookie
     setCookie('cart', JSON.stringify(cart), 365);
