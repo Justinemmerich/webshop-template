@@ -135,7 +135,7 @@ function renderSingleProduct() {
     document.getElementsByClassName('heading-banner-title')[0].querySelector('h2').innerHTML = singleproduct.productname;
     document.getElementsByClassName('post-title')[0].innerHTML = singleproduct.productname;
     document.getElementsByClassName('pro-description')[0].querySelector('h3').innerHTML = singleproduct.productname;
-    document.getElementsByClassName('pro-price')[0].innerHTML = singleproduct.price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) + ' €';
+    document.getElementsByClassName('pro-price')[0].innerHTML = singleproduct.price.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) + ' €';
     document.getElementsByClassName('product-description')[0].querySelector('p').innerHTML = singleproduct.description;
     document.getElementsByClassName('pro-description')[0].querySelector('p').innerHTML = singleproduct.description_big;
     document.getElementsByClassName('pro-information')[0].querySelector('p').innerHTML = singleproduct.information;

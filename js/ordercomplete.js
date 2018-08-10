@@ -100,7 +100,7 @@ function renderOrderComplete() {
     var div = document.createElement('tr');
     div.innerHTML = '<td>Geschenkoptionen</td>\
                     <td></td>\
-                    <td class="text-right" style="padding-left:0">'+(totalgiftprice).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
+                    <td class="text-right" style="padding-left:0">'+(totalgiftprice).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>';
 
     document.getElementsByClassName('our-order')[0].querySelector('tbody').appendChild(div);
     
@@ -111,27 +111,60 @@ function renderOrderComplete() {
     var div = document.createElement('tr');
     div.innerHTML = '<td>Versandkosten</td>\
                      <td></td>\
-                    <td class="text-right" style="padding-left:0">'+(shippingcosts).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
+                    <td class="text-right" style="padding-left:0">'+(shippingcosts).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>';
 
     document.getElementsByClassName('our-order')[0].querySelector('tbody').appendChild(div);
 
+    var total_with_coupon =  total;
+    var discount = 0;
+     // if has coupon -> display coupon code
+     if (coupon.valid === true){
+         console.log('coupon', coupon);
+        switch (coupon.operation){
+            case 'percent': 
+            console.log('coupon operator %')
+            discount = (total/100) * coupon.amount;
+            console.log('coupon  discount',  discount);
+            total_with_coupon = parseFloat(total) - parseFloat(discount);
+            break;
+            case 'minus': 
+            console.log('coupon operator -')
+            discount = coupon.amount;
+            console.log('coupon  discount',  discount)
+            total_with_coupon = (parseFloat(total) < discount) ? parseFloat(total) : ((parseFloat(total) - discount));
+            break;
+            default:
+            console.log('coupon operator not set')
+            discount = 0;
+            total_with_coupon = parseFloat(total);
+            break;
+        }
 
-    // render Discount
-    if (coupon.valid == true){
         var div = document.createElement('tr');
         div.innerHTML = '<td>Rabatt</td>\
                         <td></td>\
-                        <td class="text-right" style="padding-left:0">- '+(coupon.amount).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
+                        <td class="text-right" style="padding-left:0">'+(discount).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>';
     
         document.getElementsByClassName('our-order')[0].querySelector('tbody').appendChild(div);
+    
     }
 
+    // render Discount
+    // if (coupon.valid == true){
+    //     var div = document.createElement('tr');
+    //     div.innerHTML = '<td>Rabatt</td>\
+    //                     <td></td>\
+    //                     <td class="text-right" style="padding-left:0">- '+(coupon.amount).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
+    
+    //     document.getElementsByClassName('our-order')[0].querySelector('tbody').appendChild(div);
+    // }
+
     //render Gesamt betrag
-    totaltotal = coupon.valid == true ? (total-coupon.amount+shippingcosts+totalgiftprice) : (total+shippingcosts+totalgiftprice);
+    totaltotal = coupon.valid == true ? (total-discount+shippingcosts+totalgiftprice) : (total+shippingcosts+totalgiftprice);
     var tr = document.createElement('tr');
     tr.innerHTML = '<td>Gesamt</td>\
                     <td></td>\
-                    <td class="text-right" style="padding-left:0">'+(totaltotal).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>';
+                    <td class="text-right" style="padding-left:0">'+(totaltotal).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>';
 
     document.getElementsByClassName('our-order')[0].querySelector('tbody').appendChild(tr);
 
@@ -139,7 +172,7 @@ function renderOrderComplete() {
     order_date = new Date();
     document.getElementById('top_orderdate').innerHTML = order_date.toLocaleDateString("de-DE");
     document.getElementById('top_ordernumber').innerHTML = getOrderId();
-    document.getElementById('top_total').innerHTML = (totaltotal).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
+    document.getElementById('top_total').innerHTML = (totaltotal).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
 
     switch(customerinformation.payment_method) {
         case 'payment_in_advance':
@@ -216,12 +249,50 @@ function renderOrderComplete() {
 function getShippingcosts(country){
     var shippingcosts = null;
 
+    var res = null;
     //TODO Request to server
-    if (country === "Deutschland"){
-        shippingcosts = 5.99;
+    // $.ajax({
+    //       'url' : 'http://www.wooderino.de/api.php',
+    //       'type' : 'GET',
+    //       'contentType':'application/json',
+    //       'data' : {
+    //         'list' : 'versandkosten',
+    //       },
+    //       "success": function(res){ 
+    //          console.log('res', res);
+    //          if (res[country]){
+    //             shippingcosts = res[country].price;
+    //         } else {
+    //             alert('country not found');
+    //         }
+        
+    //         return shippingcosts;
+    //         },
+    //         "error": function(XMLHttpRequest, textStatus, errorThrown) { 
+    //             alert("Shippingcosts Api - "+"Status: " + textStatus +"; Error: " + errorThrown);
+    //         }
+    //     });
+
+    res = {
+        "Österreich": {
+            "price":3.99,
+            "zipcode_validation":"code code bla bla bla bla bla"
+        },
+        "Deutschland": {
+            "price":2.99,
+            "zipcode_validation":"code bla bla bla"
+        },
+        "Schweiz": {
+            "price":5.99,
+            "zipcode_validation":"bla bla bla bla bla bla ...."
+        }
+    };
+    if (res[country]){
+        return res[country].price;
+    } else {
+        alert('country not found');
     }
 
-    return shippingcosts;
 }
 
 function getOrderId(){
@@ -297,9 +368,10 @@ function checkout(){
 
      //TODO send data to Server for validation and payout
         console.log('order packed for shipping to server', order);
-        alert('validate Order on Server');
+        console.log(order);
+        alert('validate Order on Server: '+ JSON.stringify(order));
 
      //route to thanks page
-     window.location.href = window.location.pathname.substring( 0, window.location.pathname.lastIndexOf( '/' ) + 1 ) + 'thanks.html';
+     //window.location.href = window.location.pathname.substring( 0, window.location.pathname.lastIndexOf( '/' ) + 1 ) + 'thanks.html';
 }
 

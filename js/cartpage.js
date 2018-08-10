@@ -63,13 +63,13 @@ function renderShoppingCartItems(){
                         </div>\
                         </div>										\
                         </td>\
-                        <td data-label="Stückpreis" class="product-price">'+ cart[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>\
+                        <td data-label="Stückpreis" class="product-price">'+ cart[i].price.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>\
                         <td data-label="Anzahl" class="product-quantity">\
                         <div class="cart-plus-minus"><div data-cartItemId="'+cart[i].cartItemId +'" onclick="removeQuantity(this)" class="dec qtybutton">-</div>\
                         <input value="'+ cart[i].quantity +'" id="'+cart[i].cartItemId +'quantity" name="qtybutton" class="cart-plus-minus-box" type="text">\
                         <div onclick="addQuantity(this)" data-cartItemId="'+cart[i].cartItemId +'" class="inc qtybutton">+</div></div>\
                         </td>\
-                        <td data-label="Gesamt" class="product-subtotal">'+ (cart[i].price * cart[i].quantity).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</td>\
+                        <td data-label="Gesamt" class="product-subtotal">'+ (cart[i].price * cart[i].quantity).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</td>\
                         <td data-label="Löschen" class="product-remove">\
                         <a data-cartItemId="'+cart[i].cartItemId +'" onclick="removeItem(this)"><i class="zmdi zmdi-close"></i></a>\
                         </td>'
@@ -78,36 +78,38 @@ function renderShoppingCartItems(){
     } // End for-loop
 
     //calculate discount
-    var total_with_coupon = 0;
+    var total_with_coupon =  total;
      // if has coupon -> display coupon code
      if (coupon.valid === true){
+         console.log('coupon', coupon)
         switch (coupon.operation){
             case 'percent': 
             console.log('coupon operator %')
-            discount = parseFloat((total/100) * coupon.amount).toFixed(2);
+            discount = (total/100) * coupon.amount;
             console.log('coupon  discount',  discount)
             total_with_coupon = parseFloat(total) - parseFloat(discount).toFixed(2);
+            document.getElementById('payment_coupon_text').innerHTML = coupon.action+' '+'('+coupon.code+')';
             break;
             case 'minus': 
             console.log('coupon operator -')
-            discount = parseFloat(coupon.amount).toFixed(2);
+            discount = coupon.amount;
             console.log('coupon  discount',  discount)
             total_with_coupon = (parseFloat(total) < discount) ? parseFloat(total) : ((parseFloat(total) - discount));
+            document.getElementById('payment_coupon_text').innerHTML = coupon.action+' '+'('+coupon.code+')';
             break;
             default:
             console.log('coupon operator not set')
-            discount = parseFloat(0);
+            discount = 0;
             total_with_coupon = parseFloat(total);
             break;
         }
-        document.getElementById('payment_coupon_text').innerHTML = coupon.action+' '+'('+coupon.code+')';
     }
     var total_with_shipping = parseFloat(total_with_coupon) + parseFloat(shippingcosts);
 
-    document.getElementById('payment_cart').innerHTML = total.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
-    document.getElementById('payment_coupon').innerHTML = discount.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
-    document.getElementById('payment_shipping').innerHTML = shippingcosts.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
-    document.getElementById('payment_total').innerHTML = total_with_shipping.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_cart').innerHTML = total.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_coupon').innerHTML = discount.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_shipping').innerHTML = shippingcosts.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_total').innerHTML = total_with_shipping.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
 
    
 }
@@ -116,8 +118,9 @@ function addCoupon(element){
 
     var coupon_code = element.parentElement.querySelector('input').value;
 
-    //TODO Send validation to server
-    // res = coupon
+    // Json Example
+    //coupon = {"valid":true, "operation":"minus", "amount":10, expires:"762376762357276", "code":'hx5663fdg3', action:"Aktion - Keine Versandkosten"};
+    coupon = {"valid":true, "operation":"percent", "amount":10, "expires":"762376762357276", "code":'gx63vst53g', "action":"Aktion - 10 Prozent'"};
 
     // $.ajax({
     //       'url' : 'http://www.wooderino.de/api.php',
@@ -148,8 +151,7 @@ function addCoupon(element){
     //     });
 
        
-     //coupon = {"valid":true, "operation":"minus", "amount":10, expires:"762376762357276", "code":'hx5663fdg3', action:"Aktion - Keine Versandkosten"};
-     coupon = {"valid":true, "operation":"percent", "amount":10, expires:"762376762357276", "code":'gx63vst53g', action:"Aktion - 10%"};
+     
 
     if (coupon.valid){
         // set input style

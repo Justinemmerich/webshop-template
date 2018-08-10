@@ -99,7 +99,8 @@ function setTextFilter(event){
         }
 
          //toggle categorie button to close
-         event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelectorAll('button')[2].click();
+         console.log(event.target.parentElement.parentElement.parentElement.parentElement)
+         event.target.parentElement.parentElement.parentElement.parentElement.querySelectorAll('button')[0].click();
 
         //rerender products
         renderProducts(); 
@@ -124,6 +125,7 @@ function loadProducts() {
             itemId:'001',
             images:['6.jpg'],
             seoname:'name-aus-holz',
+            productname: 'Name aus Holz',
             price:12.90,
             hasIndividualisation: true,
             individualisationfields:[{
@@ -218,16 +220,16 @@ function renderProducts(){
 
     console.log('filtered_products', filtered_products)
     
-    // //text filter
-    // if (filter.text !== '' || filter.text !== undefined){
-    //     filtered_products = products.filter(function (product) {
-    //         if (product.productname.toUpperCase().indexOf(filter.text.toUpperCase()) > -1){
-    //             return true;
-    //         }else{
-    //             return false;
-    //         }
-    //     });
-    // }
+    //text filter
+    if (filter.text !== '' || filter.text !== undefined){
+        filtered_products = products.filter(function (product) {
+            if (product.productname.toUpperCase().indexOf(filter.text.toUpperCase()) > -1){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    }
 
 
     console.log(document.getElementsByClassName('showing')[0].querySelector);
@@ -251,7 +253,7 @@ function renderProducts(){
     div.innerHTML = '   <div class="single-product">\
                         <div class="product-img">\
                         <span style="display:'+hasLabel+'" class="pro-label new-label"><span class="text-label">'+filtered_products[i].label+'</span></span>\
-                        <span class="pro-price-2">'+filtered_products[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 })+' €</span>\
+                        <span class="pro-price-2">'+filtered_products[i].price.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 })+' €</span>\
                         <a href="single-product.html#'+filtered_products[i].itemId+'#'+filtered_products[i].seoname+'"><img data-filename="'+filtered_products[i].images[0]+'" src="img/product/'+filtered_products[i].images[0]+'" alt="" /></a>\
                         </div>\
                         <div class="product-info clearfix text-center">\

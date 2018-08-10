@@ -56,7 +56,9 @@ function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    var new_cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    new_cookie.raw=true;
+    document.cookie = new_cookie;
 }
 
 //delete cookie from storage
@@ -99,7 +101,7 @@ function loadShoppingCart() {
                         <div class="cart-info">\
                         <h5><a href="#">'+ cart[i].productname +'</a></h5>\
                         <p class="mb-0">#'+ cart[i].itemId +' </p>\
-                        <p class="mb-0"><span data-i18n="cart-price-label">Preis:</span> '+ cart[i].price.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €</p>\
+                        <p class="mb-0"><span data-i18n="cart-price-label">Preis:</span> '+ cart[i].price.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €</p>\
                         <p class="mb-0"><span data-i18n="cart-quantity-label">Stück:</span> '+ cart[i].quantity +' </p>\
                         <p style="display:'+display_individualisation+'; class="mt-20">'+ individualisationwrapper +' </p>\
                         <span data-cartItemId="'+cart[i].cartItemId +'" onclick="removeItemfromCart(this)" class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>\
@@ -117,7 +119,7 @@ function loadShoppingCart() {
         document.getElementsByClassName('cart-items')[0].querySelector('p').innerHTML =   $.i18n( 'you have $1 {{plural:$1|item|items}} in your shopping bag', total_items );
     
         // render total price
-        document.getElementsByClassName('cart-totals')[0].querySelector('span').innerHTML = total.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) + ' €';
+        document.getElementsByClassName('cart-totals')[0].querySelector('span').innerHTML = total.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) + ' €';
 
         //disable cart button if cart is empty
         if(total_items === 0){

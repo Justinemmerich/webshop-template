@@ -287,7 +287,7 @@ function render(){
                         <td data-label="Einfach" class="product-price"><div class="radio-inline"><label><input id="'+cart[i].cartItemId + j+'cardstyle0'+'" type="radio" name="optradio'+cart[i].cartItemId + j+'" onChange="onRadioChange(this);" checked="checked" value="0"><img src="img/card-simple.png" width="60px"></label></div></td>\
                         <td data-label="Klappbar" class="product-quantity"><div class="radio-inline"><label><input id="'+cart[i].cartItemId + j+'cardstyle1'+'" type="radio" name="optradio'+cart[i].cartItemId + j+'" onChange="onRadioChange(this);" value="1"><img src="img/card-foldable.png" width="60px"></label></div></td>\
                         </form>\
-                        <td data-label="Vorlage" class="product-subtotal"><img id="'+cart[i].cartItemId + j+'cardimage'+'" onclick="opengallery(this)" src="https://assets.bakker.com/ProductPics/560x676/85903-04-BAKI_20160329161309.jpg" width="100px"></td>\
+                        <td data-label="Vorlage" class="product-subtotal"><img id="'+cart[i].cartItemId + j+'cardimage'+'" onclick="opengallery(this)" src="http://www.urlaubsgruss.com/vorlagen/smallthumb_ce0758602d66fbf29646.jpg" width="100px"></td>\
                         <td class="product-subtotal">Grußtext<br><textarea id="'+cart[i].cartItemId + j+'cardtext'+'" onfocusout="onTextChange(this)" name="Text1" cols="30" rows="5"></textarea></td>';
                         document.getElementsByClassName('shop-cart-table')[0].querySelector('tbody').appendChild(tr);
         }
@@ -305,12 +305,14 @@ function render(){
         carttotalprice = carttotalprice + (cart[i].price * cart[i].quantity);
     }
 
-    document.getElementById('payment_cart').innerHTML = carttotalprice.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
+
+
+    document.getElementById('payment_cart').innerHTML = carttotalprice.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
 
     var cookie_coupon = getCookie('coupon');
     coupon = cookie_coupon === "none" ? {"valid":false, "amount":0.00}: JSON.parse(cookie_coupon);
 
-    document.getElementById('payment_coupon').innerHTML = coupon.amount.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
+    document.getElementById('payment_coupon').innerHTML = coupon.amount.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
 
     //restorefromcookies
     restoreOptionsfromCookie();
@@ -399,15 +401,43 @@ function renderPrice(){
         for (var i = 0; i < options.length; i++ ){
             for(var j= 0; j< options[i].options.length; j++){
                 if(options[i].options[j].card === true){
-                    totalgiftprice = totalgiftprice + cardprice;
+                    totalgiftprice = parseFloat(totalgiftprice + cardprice);
                 }
                 if(options[i].options[j].packing === true){
-                    totalgiftprice = totalgiftprice + packingprice;
+                    totalgiftprice = parseFloat(totalgiftprice + packingprice);
                 }
             }  
-        }       
-        document.getElementById('payment_giftoption').innerHTML = totalgiftprice.toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
-        document.getElementById('payment_total').innerHTML = ((total + totalgiftprice)-coupon.amount).toLocaleString('de-DE', { minimumFractionDigits: 2, minimumIntegerDigits:2 }) +' €';
+        }
+        
+         //calculate discount
+     var total_with_coupon =  total;
+     var discount = 0;
+     // if has coupon -> display coupon code
+     if (coupon.valid === true){
+         console.log('coupon', coupon);
+        switch (coupon.operation){
+            case 'percent': 
+            console.log('coupon operator %')
+            discount = (total/100) * coupon.amount
+            console.log('coupon  discount',  discount)
+            total_with_coupon = parseFloat(total) - parseFloat(discount);
+            break;
+            case 'minus': 
+            console.log('coupon operator -')
+            discount = coupon.amount;
+            console.log('coupon  discount',  discount)
+            total_with_coupon = (parseFloat(total) < discount) ? parseFloat(total) : ((parseFloat(total) - discount));
+            break;
+            default:
+            console.log('coupon operator not set')
+            discount = 0;
+            total_with_coupon = parseFloat(total);
+            break;
+        }
+    }
+    document.getElementById('payment_coupon').innerHTML = parseFloat(discount).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_giftoption').innerHTML = totalgiftprice.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('payment_total').innerHTML = (total_with_coupon + totalgiftprice).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
 }
 
 function switchoptions(element){
