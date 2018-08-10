@@ -1,0 +1,27 @@
+//todo list
+----------------
+// frontend
+
+- Adressdaten (checkout.html) PLZ Validierung an Land -> http://www.wooderino.de/api.php?list=versandkosten
+- Produkte Aktionsecke (z.b 20%) -> Aktionspreis in Warenkorb Berechnung 
+- Footer von shop.html auf alle Seiten übertragen
+- Burger/Sidemenü Links überarbeiten, in alle Seiten einpflegen
+- Logo + Design anpassen, in alle Seiten einpflegen
+- Impressum, Datenschutz, AGB's hinterlegen
+- Impressum, Datenschutz, AGB' übersetzen -> i18n 
+- shop.html Produktkateorie Slider: Kategorien dynamisch aus gesetzem Filter von laden -> API oder intelligente Filterfunktion schreiben
+- Versandkosten Hinweisseite erstellen und Daten von Api laden -> http://www.wooderino.de/api.php?list=versandkosten
+- Shop.html Produkttextsuche multilanguage switch einbauen -> i18n.locale
+- Produkte multilanguage umstellen -> i18n.locale 
+- index.html Produktslideshow 
+- single-product.html individualisierung fontarray -> products[].individualisationfields[].font
+- single-product.html Release Konfig single-product.html#002#schluesselanhaenger-gravur -> single-product.html/002/schluesselanhaenger-gravur für Suchmaschinenoptimierung ( singleproduct.js -> initSingleProduct() && routing.js )
+- Checkout/Cashout Validierung + Weiterleitung to thanks.html
+
+----------------
+// backend
+
+- Versandkosten API http://www.wooderino.de/api.php?list=versandkosten -> Response in "" setzen (parseError) => {"Deutschland": {"price":2.99,zipcode_validation:'code bla bla bla'},"Schweiz": {"price":5.99,zipcode_validation:'bla bla bla bla bla bla ....'}}
+- Coupon API http://www.wooderino.de/api.php?list=codecheck&code=b2f1ce8e8ba1 -> {“valid”:true/false, “operation”:“minus/percent”, “amount”:10, expires:“762376762357276”, “code”:‘hx5663fdg3’, action:“Aktion - Keine Versandkosten”}; (!!! action:“Aktion - 20%” darf kein % Zeichen enthalten Fehler in Cookieparser !!!)
+- Release Server Konfig .htaccess redirects für single-product.html -> single-product.html#002#schluesselanhaenger-gravur redirect auf single-product.html
+- Checkout/Cashout API

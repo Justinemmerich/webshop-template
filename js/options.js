@@ -194,6 +194,10 @@ function loadCardTemplates(){
 
 
 function render(){
+    //set giftoption price in table headline
+    document.getElementById('giftcard-price-label').innerHTML = cardprice.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+    document.getElementById('wrappingpaper-price-label').innerHTML = packingprice.toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2, minimumIntegerDigits:1 }) +' €';
+
     // reset cart and values
     document.getElementsByClassName('shop-cart-table')[0].querySelector('tbody').innerHTML = '';
 
